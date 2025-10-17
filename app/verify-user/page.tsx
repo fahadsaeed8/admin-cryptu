@@ -1,73 +1,62 @@
-"use client";
+import Link from "next/link";
+import React from "react";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
-// import DashboardLayout from "src/components/layout/dashboard-layout";
-// import { resendOTPAPI } from "src/services/auth";
-
-// Validation Schema
-const EmailSchema = Yup.object({
-  email: Yup.string().email("Invalid email").required("Email is required"),
-});
-
-export default function VerifyUserPage() {
-  const router = useRouter();
-
-  // Step 1: Send OTP
-  // const resendOTPMutation = useMutation({
-  //   mutationFn: (data: any) => resendOTPAPI(data),
-  //   onSuccess: (res) => {
-  //     toast.success(res?.message || "OTP sent successfully");
-  //     router.push("/otp-verification"); // ✅ redirect after OTP send
-  //   },
-  //   onError: (err: any) => {
-  //     toast.error(err?.response?.data?.message || "Failed to send OTP");
-  //   },
-  // });
-
+const VerifyUserPage: React.FC = () => {
   return (
-    // <DashboardLayout>
-      <div className="min-h-screen flex items-center justify-center bg-white px-4">
-        <div className="max-w-md w-full space-y-6 border p-6 shadow rounded-lg">
-          <h1 className="text-2xl font-bold text-center text-black">
-            Verify User
-          </h1>
+    <div className="min-h-screen w-full overflow-x-hidden bg-[url('/cryptologin.jpg')] bg-cover bg-no-repeat flex items-center justify-center relative z-10">
+      {/* Background Overlay */}
+      <div className="fixed top-0 left-0 w-full h-full bg-black/30 z-20"></div>
 
-          <Formik
-            initialValues={{ email: "" }}
-            validationSchema={EmailSchema}
-            onSubmit={(values) => {
-              // resendOTPMutation.mutate({ email: values.email });
-            }}
+      {/* Verify Card */}
+      <div className="bg-[#1e157d] rounded-lg shadow-lg w-full max-w-[466px] z-30 relative my-20">
+        {/* Top Section with Curve */}
+        <div className="bg-[#3d2bfb] text-white h-[212px] flex flex-col items-center justify-center text-center py-8 relative rounded-t-lg px-6">
+          <h1 className="text-[30px] font-[600]">Verify Your Account</h1>
+          <p className="mt-2 text-lg">
+            Enter the verification code sent to your email
+          </p>
+        </div>
+
+        {/* Curve Border */}
+        <div className="w-full border-l-[233px] border-[#3d2bfb] border-l-transparent border-r-[233px] border-r-transparent border-t-[50px]"></div>
+
+        {/* Form Section */}
+        <form className="px-6 py-8">
+          <div className="mb-6">
+            <label
+              className="block font-semibold text-[#a5a1cb] mb-1"
+              htmlFor="verificationCode"
+            >
+              Verification Code <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="verificationCode"
+              maxLength={6}
+              className="w-full h-[50px] tracking-[0.3em] text-center px-3 py-2 rounded-md border border-[rgba(255,255,255,0.3)] focus:border-[1px] focus:border-[#3d2bfb] transition-all duration-500 ease-in-out bg-transparent text-white outline-none focus:outline-none text-lg"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full cursor-pointer bg-[#3d2bfb] h-[50px] hover:bg-[#3a39d6] text-white py-2 px-4 rounded transition-colors"
           >
-            <Form className="space-y-4">
-              <div>
-                <Field
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  className="w-full h-[47px] border border-gray-400 bg-white px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-gray-300"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-red-500 text-sm"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full h-[42px] flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white text-xl font-extrabold rounded-lg cursor-pointer shadow-md transition-all"
-                // disabled={resendOTPMutation.isPending}
-              >
-               Next
-              </button>
-            </Form>
-          </Formik>
+            VERIFY ACCOUNT
+          </button>
+        </form>
+
+        {/* Footer */}
+        <div className="text-center pb-4">
+          <h1 className="font-semibold text-[#a5a1cb]">
+            Didn’t receive a code?{" "}
+            <span className="text-white cursor-pointer">
+              <Link href={"/resend-code"}>Resend</Link>
+            </span>
+          </h1>
         </div>
       </div>
-    // </DashboardLayout>
+    </div>
   );
-}
+};
+
+export default VerifyUserPage;
