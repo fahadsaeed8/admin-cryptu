@@ -146,43 +146,73 @@ export default function FinancialDetailsPage() {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto border rounded-lg shadow-sm">
-          <table className="min-w-full text-sm text-left border-collapse">
-            <thead className="bg-gray-100 text-gray-700 border-b">
-              <tr>
-                <th className="p-2 border text-center w-10">
+        <div className="overflow-x-auto bg-white">
+          <table className="min-w-full text-sm border-collapse table-auto">
+            <thead>
+              <tr className="text-left">
+                <th className="p-2 border border-gray-300 text-center w-10">
                   <input type="checkbox" />
                 </th>
-                <th className="p-2 border">ID</th>
-                <th className="p-2 border">username</th>
-                <th className="p-2 border">Trading currency</th>
-                <th className="p-2 border text-center">Number of operations</th>
-                <th className="p-2 border">Operation type</th>
-                <th className="p-2 border text-center">After the operation</th>
-                <th className="p-2 border">Operating Instructions</th>
-                <th className="p-2 border">Operation time</th>
-                <th className="p-2 border text-center">state</th>
+                <th className="p-2 border border-gray-300">ID</th>
+                <th className="p-2 border border-gray-300">Username</th>
+                <th className="p-2 border border-gray-300">Trading currency</th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Number of operations
+                </th>
+                <th className="p-2 border border-gray-300">Operation type</th>
+                <th className="p-2 border border-gray-300 text-center">
+                  After the operation
+                </th>
+                <th className="p-2 border border-gray-300">
+                  Operating Instructions
+                </th>
+                <th className="p-2 border border-gray-300">Operation time</th>
+                <th className="p-2 border border-gray-300 text-center">
+                  State
+                </th>
               </tr>
             </thead>
+
             <tbody>
-              {records.map((r) => (
-                <tr key={r.id} className="hover:bg-gray-50">
-                  <td className="p-2 border text-center">
+              {records.map((r, index) => (
+                <tr
+                  key={r.id}
+                  className={`${
+                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } hover:bg-orange-50 transition-colors`}
+                >
+                  <td className="p-2 border border-gray-300 text-center">
                     <input type="checkbox" />
                   </td>
-                  <td className="p-2 border">{r.id}</td>
-                  <td className="p-2 border">{r.username}</td>
-                  <td className="p-2 border">{r.tradingCurrency}</td>
-                  <td className="p-2 border text-center">
+                  <td className="p-2 border border-gray-300">{r.id}</td>
+                  <td className="p-2 border border-gray-300">{r.username}</td>
+                  <td className="p-2 border border-gray-300">
+                    {r.tradingCurrency}
+                  </td>
+                  <td className="p-2 border border-gray-300 text-center">
                     {r.numberOfOperations.toFixed(4)}
                   </td>
-                  <td className="p-2 border">{r.operationType}</td>
-                  <td className="p-2 border text-center">
+                  <td className="p-2 border border-gray-300">
+                    {r.operationType}
+                  </td>
+                  <td className="p-2 border border-gray-300 text-center">
                     {r.afterOperation.toFixed(4)}
                   </td>
-                  <td className="p-2 border">{r.operatingInstructions}</td>
-                  <td className="p-2 border">{r.operationTime}</td>
-                  <td className="p-2 border text-center text-green-600">
+                  <td className="p-2 border border-gray-300">
+                    {r.operatingInstructions}
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    {r.operationTime}
+                  </td>
+                  <td
+                    className={`p-2 border border-gray-300 text-center font-semibold ${
+                      r.state === "Completed"
+                        ? "text-green-600"
+                        : r.state === "Pending"
+                        ? "text-orange-600"
+                        : "text-gray-600"
+                    }`}
+                  >
                     {r.state}
                   </td>
                 </tr>

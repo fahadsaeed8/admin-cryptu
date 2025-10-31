@@ -81,42 +81,59 @@ export default function UserAssetsPage() {
           </div>
 
           {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-gray-200 text-left">
-                  <th className="p-2 border">ID</th>
-                  <th className="p-2 border">Username</th>
-                  <th className="p-2 border">BTC</th>
-                  <th className="p-2 border">ETH</th>
-                  <th className="p-2 border">USDT</th>
+          <div className="overflow-x-auto bg-white">
+            <table className="w-full text-sm text-left border-collapse table-auto">
+              <thead className="text-gray-800 uppercase">
+                <tr className="bg-gray-100">
+                  <th className="p-2 border border-gray-300">ID</th>
+                  <th className="p-2 border border-gray-300">Username</th>
+                  <th className="p-2 border border-gray-300">BTC</th>
+                  <th className="p-2 border border-gray-300">ETH</th>
+                  <th className="p-2 border border-gray-300">USDT</th>
                 </tr>
               </thead>
+
               <tbody>
-                {filtered.map((user) => (
-                  <tr key={user.id} className="hover:bg-gray-50">
-                    <td className="p-2 border">{user.id}</td>
-                    <td className="p-2 border">{user.username}</td>
-                    <td className="p-2 border text-sm">
-                      <div>Available: {user.btc.available}</div>
-                      <div>Frozen: {user.btc.frozen}</div>
-                      <div>Total: {user.btc.total}</div>
-                    </td>
-                    <td className="p-2 border text-sm">
-                      <div>Available: {user.eth.available}</div>
-                      <div>Frozen: {user.eth.frozen}</div>
-                      <div>Total: {user.eth.total}</div>
-                    </td>
-                    <td className="p-2 border text-sm">
-                      <div>Available: {user.usdt.available}</div>
-                      <div>Frozen: {user.usdt.frozen}</div>
-                      <div>Total: {user.usdt.total}</div>
-                    </td>
-                  </tr>
-                ))}
-                {filtered.length === 0 && (
+                {filtered.length > 0 ? (
+                  filtered.map((user, index) => (
+                    <tr
+                      key={user.id}
+                      className={`${
+                        index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                      } hover:bg-orange-50 transition-colors`}
+                    >
+                      <td className="p-2 border border-gray-300 align-top text-sm">
+                        {user.id}
+                      </td>
+                      <td className="p-2 border border-gray-300 align-top text-sm">
+                        {user.username}
+                      </td>
+
+                      <td className="p-2 border border-gray-300 align-top text-sm">
+                        <div>Available: {user.btc.available}</div>
+                        <div>Frozen: {user.btc.frozen}</div>
+                        <div>Total: {user.btc.total}</div>
+                      </td>
+
+                      <td className="p-2 border border-gray-300 align-top text-sm">
+                        <div>Available: {user.eth.available}</div>
+                        <div>Frozen: {user.eth.frozen}</div>
+                        <div>Total: {user.eth.total}</div>
+                      </td>
+
+                      <td className="p-2 border border-gray-300 align-top text-sm">
+                        <div>Available: {user.usdt.available}</div>
+                        <div>Frozen: {user.usdt.frozen}</div>
+                        <div>Total: {user.usdt.total}</div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
                   <tr>
-                    <td colSpan={5} className="text-center p-4 text-gray-500">
+                    <td
+                      colSpan={5}
+                      className="text-center text-gray-500 py-6 border border-gray-300 bg-white"
+                    >
                       No results found
                     </td>
                   </tr>

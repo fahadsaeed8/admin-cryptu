@@ -18,33 +18,48 @@ export default function CustomerServicePage() {
       <div className="">
         <h1 className="text-xl font-semibold mb-4">Online customer service</h1>
 
-        <div className="overflow-x-auto border rounded-lg shadow-sm">
-          <table className="min-w-full text-sm text-left border-collapse">
-            <thead className="bg-gray-100 text-gray-700 border-b">
-              <tr>
-                <th className="p-2 border w-10 text-center">
+        <div className="overflow-x-auto w-full bg-white">
+          <table className="min-w-full text-sm border-collapse table-auto">
+            <thead>
+              <tr className="text-left">
+                <th className="p-2 border border-gray-300 w-10 text-center">
                   <input type="checkbox" />
                 </th>
-                <th className="p-2 border w-16 text-center">ID</th>
-                <th className="p-2 border">Member account</th>
-                <th className="p-2 border text-center">Unanswered records</th>
-                <th className="p-2 border text-center">Operate</th>
+                <th className="p-2 border border-gray-300 w-16 text-center">
+                  ID
+                </th>
+                <th className="p-2 border border-gray-300">Member account</th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Unanswered records
+                </th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Operate
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              {records.map((r) => (
-                <tr key={r.id} className="hover:bg-gray-50">
-                  <td className="p-2 border text-center">
+              {records.map((r, index) => (
+                <tr
+                  key={r.id}
+                  className={`${
+                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } hover:bg-orange-50 transition-colors`}
+                >
+                  <td className="p-2 border border-gray-300 text-center">
                     <input type="checkbox" />
                   </td>
-                  <td className="p-2 border text-center">{r.id}</td>
-                  <td className="p-2 border">{r.memberAccount}</td>
-                  <td className="p-2 border text-center">
+                  <td className="p-2 border border-gray-300 text-center">
+                    {r.id}
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    {r.memberAccount}
+                  </td>
+                  <td className="p-2 border border-gray-300 text-center">
                     {r.unansweredRecords}
                   </td>
-                  <td className="p-2 border text-center">
-                    <button className="bg-gray-700 text-white text-xs px-3 py-1 rounded hover:bg-gray-800 transition">
+                  <td className="p-2 border border-gray-300 text-center">
+                    <button className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
                       check the details
                     </button>
                   </td>
@@ -53,7 +68,7 @@ export default function CustomerServicePage() {
             </tbody>
           </table>
 
-          <div className="p-2 text-sm text-gray-600">
+          <div className="p-2 text-sm text-gray-600 border-t border-gray-200">
             {records.length} record{records.length !== 1 && "s"} per page 1/1
           </div>
         </div>

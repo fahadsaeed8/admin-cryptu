@@ -211,7 +211,7 @@ export default function MarketAllocationPage() {
 
   return (
     <DashboardLayout>
-      <div className="">
+      <div className=" bg-white p-3">
         <h2 className="text-lg font-semibold mb-4">
           Market allocation (trading pairs that access external data)
         </h2>
@@ -250,46 +250,60 @@ export default function MarketAllocationPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white shadow rounded overflow-x-auto">
-          <table className="min-w-full table-auto">
-            <thead className="bg-gray-50">
-              <tr className="text-left text-xs uppercase text-gray-600">
-                <th className="px-4 py-3">
+        <div className="overflow-x-auto bg-white">
+          <table className=" min-w-full text-sm border-collapse table-auto">
+            <thead>
+              <tr className="text-left  uppercase text-gray-800">
+                <th className="p-2 border border-gray-300">
                   <input
                     type="checkbox"
                     checked={selectAll}
                     onChange={toggleSelectAll}
                   />
                 </th>
-                <th className="px-4 py-3">ID</th>
-                <th className="px-4 py-3">Market trading pairs</th>
-                <th className="px-4 py-3">Sort</th>
-                <th className="px-4 py-3">Display Status</th>
-                <th className="px-4 py-3">Transaction status</th>
-                <th className="px-4 py-3">Operate</th>
+                <th className="p-2 border border-gray-300">ID</th>
+                <th className="p-2 border border-gray-300">
+                  Market trading pairs
+                </th>
+                <th className="p-2 border border-gray-300">Sort</th>
+                <th className="p-2 border border-gray-300">Display Status</th>
+                <th className="p-2 border border-gray-300">
+                  Transaction status
+                </th>
+                <th className="p-2 border border-gray-300">Operate</th>
               </tr>
             </thead>
+
             <tbody>
               {data
                 .slice()
                 .sort((a, b) => a.sort - b.sort)
-                .map((row) => (
+                .map((row, index) => (
                   <tr
                     key={row.id}
-                    className="border-t even:bg-gray-50 hover:bg-gray-50 transition-colors"
+                    className={`${
+                      index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                    } hover:bg-orange-50 transition-colors`}
                   >
-                    <td className="px-4 py-3 align-top">
+                    <td className="p-2 border border-gray-300 align-top">
                       <input
                         type="checkbox"
                         checked={!!row.selected}
                         onChange={() => toggleRowSelect(row.id)}
                       />
                     </td>
-                    <td className="px-4 py-3 align-top text-sm">{row.id}</td>
-                    <td className="px-4 py-3 align-top text-sm">{row.pair}</td>
-                    <td className="px-4 py-3 align-top text-sm">
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {row.id}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {row.pair}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
                       <input
-                        className="w-16 p-1 border rounded text-sm"
+                        className="w-16 p-1 border border-gray-300 rounded text-sm"
                         type="number"
                         value={row.sort}
                         onChange={(e) =>
@@ -297,9 +311,10 @@ export default function MarketAllocationPage() {
                         }
                       />
                     </td>
-                    <td className="px-4 py-3 align-top text-sm">
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
                       <span
-                        className={`inline-block px-3 py-0.5 rounded-full text-xs font-medium ${
+                        className={`inline-block px-2 py-1 rounded text-xs ${
                           row.displayStatus === "Available"
                             ? "bg-green-100 text-green-700"
                             : "bg-red-100 text-red-700"
@@ -308,9 +323,10 @@ export default function MarketAllocationPage() {
                         {row.displayStatus}
                       </span>
                     </td>
-                    <td className="px-4 py-3 align-top text-sm">
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
                       <span
-                        className={`inline-block px-3 py-0.5 rounded-full text-xs font-medium ${
+                        className={`inline-block px-2 py-1 rounded text-xs ${
                           row.txStatus === "normal"
                             ? "bg-green-100 text-green-700"
                             : "bg-red-100 text-red-700"
@@ -319,16 +335,17 @@ export default function MarketAllocationPage() {
                         {row.txStatus}
                       </span>
                     </td>
-                    <td className="px-4 py-3 align-top text-sm">
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
                       <div className="flex gap-2">
                         <button
-                          className="px-3 py-1 text-xs border rounded hover:bg-gray-100"
+                          className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                           onClick={() => openEdit(row)}
                         >
                           edit
                         </button>
                         <button
-                          className="px-3 py-1 text-xs border rounded hover:bg-gray-100"
+                          className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                           onClick={() =>
                             setData((prev) =>
                               prev.map((p) =>

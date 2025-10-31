@@ -124,11 +124,11 @@ export default function UserWalletPage() {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto border rounded-lg">
-          <table className="min-w-full text-sm text-left border-collapse">
-            <thead className="bg-gray-100 text-gray-700">
+        <div className="overflow-x-auto bg-white">
+          <table className="min-w-full text-sm text-left border-collapse table-auto">
+            <thead className="text-gray-800 uppercase">
               <tr>
-                <th className="px-4 py-2 border">
+                <th className="p-2 border border-gray-300">
                   <input
                     type="checkbox"
                     onChange={(e) => handleSelectAll(e.target.checked)}
@@ -137,20 +137,26 @@ export default function UserWalletPage() {
                     }
                   />
                 </th>
-                <th className="px-4 py-2 border">ID</th>
-                <th className="px-4 py-2 border">Username</th>
-                <th className="px-4 py-2 border">Currency</th>
-                <th className="px-4 py-2 border">Wallet Name</th>
-                <th className="px-4 py-2 border">Wallet Address</th>
-                <th className="px-4 py-2 border">Operation Time</th>
-                <th className="px-4 py-2 border">Operate</th>
+                <th className="p-2 border border-gray-300">ID</th>
+                <th className="p-2 border border-gray-300">Username</th>
+                <th className="p-2 border border-gray-300">Currency</th>
+                <th className="p-2 border border-gray-300">Wallet Name</th>
+                <th className="p-2 border border-gray-300">Wallet Address</th>
+                <th className="p-2 border border-gray-300">Operation Time</th>
+                <th className="p-2 border border-gray-300">Operate</th>
               </tr>
             </thead>
+
             <tbody>
               {filteredWallets.length > 0 ? (
-                filteredWallets.map((wallet) => (
-                  <tr key={wallet.id} className="border-t">
-                    <td className="px-4 py-2 border">
+                filteredWallets.map((wallet, index) => (
+                  <tr
+                    key={wallet.id}
+                    className={`${
+                      index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                    } hover:bg-orange-50 transition-colors`}
+                  >
+                    <td className="p-2 border border-gray-300 align-top">
                       <input
                         type="checkbox"
                         checked={selected.includes(wallet.id)}
@@ -159,20 +165,39 @@ export default function UserWalletPage() {
                         }
                       />
                     </td>
-                    <td className="px-4 py-2 border">{wallet.id}</td>
-                    <td className="px-4 py-2 border">{wallet.username}</td>
-                    <td className="px-4 py-2 border">{wallet.currency}</td>
-                    <td className="px-4 py-2 border">{wallet.walletName}</td>
-                    <td className="px-4 py-2 border">{wallet.walletAddress}</td>
-                    <td className="px-4 py-2 border">{wallet.operationTime}</td>
-                    <td className="px-4 py-2 border">
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {wallet.id}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {wallet.username}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {wallet.currency}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {wallet.walletName}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {wallet.walletAddress}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
+                      {wallet.operationTime}
+                    </td>
+
+                    <td className="p-2 border border-gray-300 align-top text-sm">
                       <button
                         onClick={() =>
                           alert(`Editing wallet for ${wallet.username}`)
                         }
-                        className="bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded text-xs"
+                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-orange-600"
                       >
-                        edit
+                        Edit
                       </button>
                     </td>
                   </tr>
@@ -181,7 +206,7 @@ export default function UserWalletPage() {
                 <tr>
                   <td
                     colSpan={8}
-                    className="text-center text-gray-400 py-8 border"
+                    className="text-center text-gray-500 py-6 border border-gray-300 bg-white"
                   >
                     No data available.
                   </td>

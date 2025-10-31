@@ -119,26 +119,32 @@ export default function ContractOrdersPage() {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto bg-white shadow rounded-md">
-          <table className="min-w-[1500px] text-sm text-left">
-            <thead className="bg-gray-100 text-gray-700">
+        <div className="overflow-x-auto bg-white">
+          <table className="min-w-[1500px] text-sm text-left border-collapse">
+            <thead className=" text-gray-700 border-b">
               <tr>
-                <th className="p-3 font-medium">
+                <th className="p-2 border text-center">
                   <input type="checkbox" className="accent-blue-600" />
                 </th>
-                <th className="p-3 font-medium">ID</th>
-                <th className="p-3 font-medium">Member’s Account</th>
-                <th className="p-3 font-medium">Transaction pair</th>
-                <th className="p-3 font-medium">Direction/Contract Time</th>
-                <th className="p-3 font-medium">Status</th>
-                <th className="p-3 font-medium">Quota of delegation</th>
-                <th className="p-3 font-medium">Building unit price</th>
-                <th className="p-3 font-medium">Closing unit price</th>
-                <th className="p-3 font-medium">Building time</th>
-                <th className="p-3 font-medium">Amount of profit or loss</th>
-                <th className="p-3 font-medium">After purchase balance</th>
-                <th className="p-3 font-medium">Single-control operation</th>
-                <th className="p-3 font-medium">Details</th>
+                <th className="p-2 border">ID</th>
+                <th className="p-2 border">Member’s Account</th>
+                <th className="p-2 border">Transaction pair</th>
+                <th className="p-2 border">Direction / Contract Time</th>
+                <th className="p-2 border text-center">Status</th>
+                <th className="p-2 border text-center">Quota of delegation</th>
+                <th className="p-2 border text-center">Building unit price</th>
+                <th className="p-2 border text-center">Closing unit price</th>
+                <th className="p-2 border text-center">Building time</th>
+                <th className="p-2 border text-center">
+                  Amount of profit or loss
+                </th>
+                <th className="p-2 border text-center">
+                  After purchase balance
+                </th>
+                <th className="p-2 border text-center">
+                  Single-control operation
+                </th>
+                <th className="p-2 border text-center">Details</th>
               </tr>
             </thead>
 
@@ -147,21 +153,26 @@ export default function ContractOrdersPage() {
                 <tr>
                   <td
                     colSpan={14}
-                    className="text-center py-10 text-gray-500 italic"
+                    className="text-center py-10 text-gray-500 italic border"
                   >
                     No data yet
                   </td>
                 </tr>
               ) : (
-                filteredOrders.map((order) => (
-                  <tr key={order.id} className="border-t hover:bg-gray-50">
-                    <td className="p-3">
+                filteredOrders.map((order, index) => (
+                  <tr
+                    key={order.id}
+                    className={`${
+                      index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                    } hover:bg-orange-50 transition-colors`}
+                  >
+                    <td className="p-2 border text-center">
                       <input type="checkbox" className="accent-blue-600" />
                     </td>
-                    <td className="p-3">{order.id}</td>
-                    <td className="p-3">{order.account}</td>
-                    <td className="p-3">{order.pair}</td>
-                    <td className="p-3">
+                    <td className="p-2 border text-center">{order.id}</td>
+                    <td className="p-2 border">{order.account}</td>
+                    <td className="p-2 border">{order.pair}</td>
+                    <td className="p-2 border">
                       <span
                         className={`font-medium ${
                           order.direction === "Buy"
@@ -175,7 +186,7 @@ export default function ContractOrdersPage() {
                         {order.contractTime}
                       </div>
                     </td>
-                    <td className="p-3">
+                    <td className="p-2 border text-center">
                       <span
                         className={`px-2 py-1 rounded text-xs font-medium ${
                           order.status === "Open"
@@ -186,14 +197,18 @@ export default function ContractOrdersPage() {
                         {order.status}
                       </span>
                     </td>
-                    <td className="p-3">{order.quota}</td>
-                    <td className="p-3">{order.buildPrice}</td>
-                    <td className="p-3">
+                    <td className="p-2 border text-center">{order.quota}</td>
+                    <td className="p-2 border text-center">
+                      {order.buildPrice}
+                    </td>
+                    <td className="p-2 border text-center">
                       {order.closePrice === 0 ? "-" : order.closePrice}
                     </td>
-                    <td className="p-3">{order.buildTime}</td>
+                    <td className="p-2 border text-center">
+                      {order.buildTime}
+                    </td>
                     <td
-                      className={`p-3 font-semibold ${
+                      className={`p-2 border text-center font-semibold ${
                         order.profitLoss >= 0
                           ? "text-green-600"
                           : "text-red-600"
@@ -201,8 +216,10 @@ export default function ContractOrdersPage() {
                     >
                       {order.profitLoss.toFixed(2)}
                     </td>
-                    <td className="p-3">{order.balanceAfter}</td>
-                    <td className="p-3">
+                    <td className="p-2 border text-center">
+                      {order.balanceAfter}
+                    </td>
+                    <td className="p-2 border text-center">
                       <button
                         onClick={() => handleDelete(order.id)}
                         className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-xs"
@@ -210,7 +227,7 @@ export default function ContractOrdersPage() {
                         Delete
                       </button>
                     </td>
-                    <td className="p-3">
+                    <td className="p-2 border text-center">
                       <button
                         onClick={() => handleDetails(order.id)}
                         className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-xs"
@@ -225,7 +242,7 @@ export default function ContractOrdersPage() {
           </table>
 
           {/* Footer */}
-          <div className="p-3 text-gray-600 text-sm border-t">
+          <div className="p-2 text-gray-600 text-sm border-t">
             {filteredOrders.length} record
             {filteredOrders.length !== 1 ? "s" : ""}, page 1/1
           </div>

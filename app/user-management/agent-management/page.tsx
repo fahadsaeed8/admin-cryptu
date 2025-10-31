@@ -41,45 +41,78 @@ const AgentManagement: React.FC = () => {
       <div className="">
         <h1 className="text-xl font-semibold mb-4">Agent Management</h1>
 
-        <div className="overflow-x-auto border rounded-lg bg-white shadow-sm">
-          <table className="min-w-[1400px] text-sm text-left">
-            <thead className="bg-gray-100 text-gray-700 uppercase">
-              <tr>
-                <th className="p-3 border-b">
+        <div className="overflow-x-auto bg-white">
+          <table className="min-w-[1400px] text-sm border-collapse table-auto">
+            <thead>
+              <tr className="text-left uppercase text-gray-800">
+                <th className="p-2 border border-gray-300">
                   <input type="checkbox" />
                 </th>
-                <th className="p-3 border-b">ID</th>
-                <th className="p-3 border-b">Proxy Account</th>
-                <th className="p-3 border-b">Registration IP/Time</th>
-                <th className="p-3 border-b">Total People (3 Generations)</th>
-                <th className="p-3 border-b">Generation 1</th>
-                <th className="p-3 border-b">Generation 2</th>
-                <th className="p-3 border-b">Generation 3</th>
-                <th className="p-3 border-b">Invitation Code</th>
-                <th className="p-3 border-b">Operate</th>
+                <th className="p-2 border border-gray-300">ID</th>
+                <th className="p-2 border border-gray-300">Proxy Account</th>
+                <th className="p-2 border border-gray-300">
+                  Registration IP/Time
+                </th>
+                <th className="p-2 border border-gray-300">
+                  Total People (3 Generations)
+                </th>
+                <th className="p-2 border border-gray-300">Generation 1</th>
+                <th className="p-2 border border-gray-300">Generation 2</th>
+                <th className="p-2 border border-gray-300">Generation 3</th>
+                <th className="p-2 border border-gray-300">Invitation Code</th>
+                <th className="p-2 border border-gray-300">Operate</th>
               </tr>
             </thead>
+
             <tbody>
-              {agents.map((agent) => (
-                <tr key={agent.id} className="border-b hover:bg-gray-50">
-                  <td className="p-3">
+              {agents.map((agent, index) => (
+                <tr
+                  key={agent.id}
+                  className={`${
+                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } hover:bg-orange-50 transition-colors`}
+                >
+                  <td className="p-2 border border-gray-300 align-top">
                     <input type="checkbox" />
                   </td>
-                  <td className="p-3">{agent.id}</td>
-                  <td className="p-3 text-blue-600">{agent.email}</td>
-                  <td className="p-3">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {agent.id}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm text-blue-600 underline">
+                    {agent.email}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-xs">
                     <div>IP: {agent.ip}</div>
                     <div>Time: {agent.time}</div>
                   </td>
-                  <td className="p-3">{agent.totalPeople} people</td>
-                  <td className="p-3">{agent.generation1} people</td>
-                  <td className="p-3">{agent.generation2} people</td>
-                  <td className="p-3">{agent.generation3} people</td>
-                  <td className="p-3">{agent.invitationCode}</td>
-                  <td className="p-3">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {agent.totalPeople} people
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {agent.generation1} people
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {agent.generation2} people
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {agent.generation3} people
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {agent.invitationCode}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
                     <button
                       onClick={() => cancelAgent(agent.id)}
-                      className="bg-red-500 text-white text-xs px-3 py-1 rounded hover:bg-red-600"
+                      className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-red-600"
                     >
                       Cancel the agent
                     </button>
@@ -90,7 +123,7 @@ const AgentManagement: React.FC = () => {
           </table>
 
           {agents.length === 0 && (
-            <div className="p-4 text-center text-gray-500">
+            <div className="p-4 text-center text-gray-500 border border-t-0 border-gray-300">
               No records found
             </div>
           )}

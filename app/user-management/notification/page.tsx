@@ -69,41 +69,58 @@ export default function NotificationsPage() {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-200 text-sm">
-            <thead className="bg-gray-100 text-gray-700">
+        <div className="overflow-x-auto bg-white">
+          <table className="min-w-full text-sm text-left border-collapse">
+            <thead className=" text-gray-800">
               <tr>
-                <th className="p-2 border">
+                <th className="px-3 py-2 border text-center">
                   <input type="checkbox" />
                 </th>
-                <th className="p-2 border">ID</th>
-                <th className="p-2 border">Member account</th>
-                <th className="p-2 border">Notification Title</th>
-                <th className="p-2 border">Notification content</th>
-                <th className="p-2 border">Sending time</th>
-                <th className="p-2 border">State</th>
+                <th className="px-3 py-2 border text-center">ID</th>
+                <th className="px-3 py-2 border">Member account</th>
+                <th className="px-3 py-2 border">Notification Title</th>
+                <th className="px-3 py-2 border">Notification Content</th>
+                <th className="px-3 py-2 border">Sending Time</th>
+                <th className="px-3 py-2 border">State</th>
               </tr>
             </thead>
+
             <tbody>
-              {notifications.map((n) => (
-                <tr key={n.id} className="hover:bg-gray-50">
-                  <td className="p-2 border text-center">
-                    <input type="checkbox" value={n.id} />
-                  </td>
-                  <td className="p-2 border text-center">{n.id}</td>
-                  <td className="p-2 border">{n.memberAccount}</td>
-                  <td className="p-2 border">{n.title}</td>
-                  <td className="p-2 border">{n.content}</td>
-                  <td className="p-2 border">{n.sendingTime}</td>
-                  <td
-                    className={`p-2 border font-semibold ${
-                      n.state === "Unread" ? "text-red-500" : "text-green-600"
-                    }`}
+              {notifications.length > 0 ? (
+                notifications.map((n, index) => (
+                  <tr
+                    key={n.id}
+                    className={`${
+                      index % 2 === 0 ? "bg-gray-100" : " bg-white"
+                    } hover:bg-orange-100 transition-colors`}
                   >
-                    {n.state}
+                    <td className="px-3 py-2 border text-center">
+                      <input type="checkbox" value={n.id} />
+                    </td>
+                    <td className="px-3 py-2 border text-center">{n.id}</td>
+                    <td className="px-3 py-2 border">{n.memberAccount}</td>
+                    <td className="px-3 py-2 border">{n.title}</td>
+                    <td className="px-3 py-2 border">{n.content}</td>
+                    <td className="px-3 py-2 border">{n.sendingTime}</td>
+                    <td
+                      className={`px-3 py-2 border font-semibold text-center ${
+                        n.state === "Unread" ? "text-red-500" : "text-green-600"
+                      }`}
+                    >
+                      {n.state}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan={7}
+                    className="text-center text-gray-400 py-8 border bg-gray-50"
+                  >
+                    No notifications found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

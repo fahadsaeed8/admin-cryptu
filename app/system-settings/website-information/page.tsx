@@ -97,8 +97,8 @@ export default function Page() {
   return (
     <DashboardLayout>
       <main className="min-h-screen">
-        <div className="max-w-5xl mx-auto bg-white border rounded-md shadow-sm overflow-hidden">
-          <div className="px-6 py-5 border-b">
+        <div className="max-w-5xl mx-auto bg-white overflow-hidden">
+          <div className="px-6 py-3 border-b border-gray-300">
             <h2 className="text-xl font-semibold">
               Basic website configuration
             </h2>
@@ -112,7 +112,7 @@ export default function Page() {
                 </label>
                 <div className="md:col-span-8">
                   <input
-                    className="w-full border rounded px-3 py-2"
+                    className="w-full border border-gray-300 rounded px-3 py-2"
                     value={form.nameOfWebsite}
                     onChange={(e) =>
                       handleInput("nameOfWebsite", e.target.value)
@@ -133,7 +133,7 @@ export default function Page() {
                 </label>
                 <div className="md:col-span-8">
                   <input
-                    className="w-full border rounded px-3 py-2"
+                    className="w-full border border-gray-300 rounded px-3 py-2"
                     value={form.titleOfWebsite}
                     onChange={(e) =>
                       handleInput("titleOfWebsite", e.target.value)
@@ -299,7 +299,7 @@ export default function Page() {
                 </label>
                 <div className="md:col-span-8">
                   <select
-                    className="w-full border rounded px-3 py-2"
+                    className="w-full border border-gray-300 rounded px-3 py-2"
                     value={form.statusOfWebsite}
                     onChange={(e) =>
                       handleInput("statusOfWebsite", e.target.value)
@@ -357,7 +357,7 @@ function ImageUploader({
 }) {
   return (
     <div className="flex items-start gap-4">
-      <div className="w-28 h-20 bg-gray-100 rounded border flex items-center justify-center overflow-hidden">
+      <div className="w-28 h-20 bg-gray-100 rounded border border-gray-300 flex items-center justify-center overflow-hidden">
         {value ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -381,7 +381,7 @@ function ImageUploader({
               if (f) onChange(f);
             }}
           />
-          <span className="px-3 py-1 bg-white border rounded text-sm cursor-pointer">
+          <span className="px-3 py-1 bg-white border border-gray-300 rounded text-sm cursor-pointer">
             Upload
           </span>
         </label>

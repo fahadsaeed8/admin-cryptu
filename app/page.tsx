@@ -3,7 +3,29 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  Menu,
+  X,
+  Home,
+  Settings,
+  Users,
+  FileText,
+  Coins,
+  Database,
+  Package,
+  MessageSquare,
+  Globe,
+  Wallet,
+  LogIn,
+  Bell,
+  CreditCard,
+  DollarSign,
+  ShoppingCart,
+  HardDrive,
+  LogOut,
+} from "lucide-react";
 
 const tabs = [
   { name: "Front Page", path: "/dashboard" },
@@ -15,6 +37,36 @@ const tabs = [
   { name: "Content Management", path: "/content-management" },
 ];
 
+// ✅ Icon map for sidebar items
+const iconMap: Record<string, React.ReactNode> = {
+  "Backend Homepage": <Home className="w-4 h-4" />,
+  "Website Information": <Globe className="w-4 h-4" />,
+  "System Configuration": <Settings className="w-4 h-4" />,
+  "Currency Allocation": <Coins className="w-4 h-4" />,
+  "Market Allocation": <Database className="w-4 h-4" />,
+  "Membership Management": <Users className="w-4 h-4" />,
+  "Agent Management": <Users className="w-4 h-4" />,
+  "Administrative Management": <Settings className="w-4 h-4" />,
+  "Login Log": <LogIn className="w-4 h-4" />,
+  "User's Wallet": <Wallet className="w-4 h-4" />,
+  "User Assets": <Database className="w-4 h-4" />,
+  "Cash Flow": <DollarSign className="w-4 h-4" />,
+  "Notification Management": <Bell className="w-4 h-4" />,
+  "Online Customer Service": <MessageSquare className="w-4 h-4" />,
+  Transactions: <CreditCard className="w-4 h-4" />,
+  "Deposit History": <DollarSign className="w-4 h-4" />,
+  "Withdraw Records": <CreditCard className="w-4 h-4" />,
+  "Contract Order": <FileText className="w-4 h-4" />,
+  "Contract Settings": <Settings className="w-4 h-4" />,
+  "Closing Records": <FileText className="w-4 h-4" />,
+  "Mining Machine List": <HardDrive className="w-4 h-4" />,
+  "Mining Machine in operation": <Database className="w-4 h-4" />,
+  "Expired Mining Machine": <Package className="w-4 h-4" />,
+  "Mining Machine Revenue list": <DollarSign className="w-4 h-4" />,
+  "Frozen Profit": <Coins className="w-4 h-4" />,
+  Posts: <MessageSquare className="w-4 h-4" />,
+};
+
 export default function DashboardLayout({
   children,
 }: {
@@ -24,6 +76,14 @@ export default function DashboardLayout({
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(pathname);
   const [accordionOpen, setAccordionOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // mobile toggle
+
+  // ✅ Redirect from "/" to "/dashboard" automatically
+  useEffect(() => {
+    if (pathname === "/") {
+      router.replace("/dashboard");
+    }
+  }, [pathname, router]);
 
   // Detect active tab based on current route
   useEffect(() => {
@@ -50,13 +110,24 @@ export default function DashboardLayout({
     }
   }, [pathname, router]);
 
+  const handleLogout = () => {
+    // Add logout logic here (e.g., clear tokens, redirect to login)
+    router.push("/login");
+  };
+
   return (
     <div className="flex h-screen bg-gray-100 w-full max-w-[2160px] mx-auto">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#1f1f2e] text-white flex flex-col">
+      <aside
+        className={`fixed lg:static top-0 left-0 h-full w-64 bg-[#1f1f2e] text-white flex flex-col transform transition-transform duration-300 z-40
+        ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0`}
+      >
         {/* Logo */}
         <div className="py-2 font-bold text-xl flex items-center justify-center gap-2 border-b border-gray-700">
           <img src="/alogn.png" className="w-7" alt="Logo" />
+          <span className="hidden sm:inline">Admin Panel</span>
         </div>
 
         {/* Accordion Header */}
@@ -73,53 +144,93 @@ export default function DashboardLayout({
         </div>
 
         {/* Sidebar Items */}
-        {accordionOpen && (
-          <nav className="flex-1 px-4 space-y-2 mt-2 transition-all duration-300 ease-in-out">
-            {sidebarItems?.map((item) => (
-              <Link
-                key={item.label}
-                href={item.path}
-                className={`block px-3 py-2 rounded-md text-sm hover:bg-gray-700 transition-all ${
-                  pathname === item.path ? "bg-gray-700" : ""
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        )}
+        <div className="flex-1 overflow-y-auto">
+          {accordionOpen && (
+            <nav className="pl-4 space-y-2 mt-2 transition-all duration-300 ease-in-out">
+              {sidebarItems?.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.path}
+                  onClick={() => setSidebarOpen(false)} // close on mobile
+                  className={`flex items-center gap-2 px-3 py-2 text-sm transition-all ${
+                    pathname === item.path
+                      ? "bg-white text-gray-900"
+                      : "hover:bg-gray-300 hover:text-gray-900"
+                  }`}
+                >
+                  {iconMap[item.label] || <FileText className="w-4 h-4" />}
+                  <span>{item.label}</span>
+                </Link>
+              ))}
+            </nav>
+          )}
+        </div>
+
+        {/* ✅ Logout Button */}
+        <div className="border-t border-gray-700 mt-auto">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center cursor-pointer gap-2 px-4 py-3 text-sm font-medium text-left hover:bg-gray-800 transition-all"
+          >
+            <LogOut className="w-4 h-4" />
+            Logout
+          </button>
+        </div>
       </aside>
+
+      {/* Overlay for mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
 
       {/* Main Area */}
       <main className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <header className="flex flex-wrap bg-white border-b text-sm font-medium text-gray-600">
-          {tabs.map((tab) => {
-            const firstSubItem = sidebarConfig[tab.path]?.[0];
-            return (
-              <button
-                key={tab.path}
-                onClick={() => {
-                  if (firstSubItem) {
-                    router.push(firstSubItem.path); // ✅ open first sidebar item
-                    setActiveTab(tab.path);
-                    setAccordionOpen(true);
-                  }
-                }}
-                className={`px-4 py-3 border-b-2 cursor-pointer transition-all ${
-                  pathname.startsWith(tab.path)
-                    ? "border-blue-500 text-blue-600 font-semibold"
-                    : "border-transparent hover:border-gray-300"
-                }`}
-              >
-                {tab.name}
-              </button>
-            );
-          })}
+        <header className="flex flex-wrap items-center justify-between bg-white border-b text-sm font-medium text-gray-600 px-4">
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden p-2"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
+            {sidebarOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
+
+          <div className="flex flex-wrap flex-1 justify-center lg:justify-start">
+            {tabs.map((tab) => {
+              const firstSubItem = sidebarConfig[tab.path]?.[0];
+              return (
+                <button
+                  key={tab.path}
+                  onClick={() => {
+                    if (firstSubItem) {
+                      router.push(firstSubItem.path);
+                      setActiveTab(tab.path);
+                      setAccordionOpen(true);
+                      setSidebarOpen(false);
+                    }
+                  }}
+                  className={`px-3 md:px-4 py-3 border-b-2 cursor-pointer transition-all text-xs md:text-sm ${
+                    pathname.startsWith(tab.path)
+                      ? "border-blue-500 text-blue-600 font-semibold"
+                      : "border-transparent hover:border-gray-300"
+                  }`}
+                >
+                  {tab.name}
+                </button>
+              );
+            })}
+          </div>
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 max-w-[1110px] overflow-y-auto p-6 ">
+        <div className="flex-1 max-w-[1110px] overflow-y-auto p-4 md:p-6">
           {children}
         </div>
       </main>
@@ -196,12 +307,29 @@ const sidebarConfig: Record<string, { label: string; path: string }[]> = {
   ],
 
   "/mining-machine": [
-    { label: "Machines", path: "/mining-machine/machines" },
-    { label: "Performance", path: "/mining-machine/performance" },
+    {
+      label: "Mining Machine List",
+      path: "/mining-machine/mining-machine-list",
+    },
+    {
+      label: "Mining Machine in operation",
+      path: "/mining-machine/mining-machine-in-operation",
+    },
+    {
+      label: "Expired Mining Machine",
+      path: "/mining-machine/expired-mining-machine",
+    },
+    {
+      label: "Mining Machine Revenue list",
+      path: "/mining-machine/mining-machine-revenue-list",
+    },
+    {
+      label: "Frozen Profit",
+      path: "/mining-machine/frozen-profit",
+    },
   ],
 
   "/content-management": [
-    { label: "Posts", path: "/content-management/posts" },
-    { label: "Media Library", path: "/content-management/media" },
+    { label: "Posts", path: "/content-management/announcement-center" },
   ],
 };

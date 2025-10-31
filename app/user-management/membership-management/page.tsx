@@ -351,65 +351,77 @@ export default function UserManagementPage() {
           </div>
         </div>
 
-        {/* Desktop table */}
-        <div className="hidden sm:block bg-white shadow rounded overflow-x-auto">
-          <table className="min-w-full table-auto">
-            <thead className="bg-gray-50">
-              <tr className="text-left text-xs uppercase text-gray-600">
-                <th className="px-4 py-3">
+        {/* Desktop table with remembered styling */}
+        <div className="hidden sm:block bg-white overflow-x-auto">
+          <table className="min-w-full text-sm border-collapse table-auto">
+            <thead>
+              <tr className="text-left uppercase text-gray-800">
+                <th className="p-2 border border-gray-300">
                   <input
                     type="checkbox"
                     checked={selectAll}
                     onChange={toggleSelectAll}
                   />
                 </th>
-                <th className="px-4 py-3">ID</th>
-                <th className="px-4 py-3">Member account</th>
-                <th className="px-4 py-3">USDT balance</th>
-                <th className="px-4 py-3">Login</th>
-                <th className="px-4 py-3">Registration IP/Time</th>
-                <th className="px-4 py-3">address</th>
-                <th className="px-4 py-3">Recommender</th>
-                <th className="px-4 py-3">Certification</th>
-                <th className="px-4 py-3">Status/Type</th>
-                <th className="px-4 py-3">Operate</th>
+                <th className="p-2 border border-gray-300">ID</th>
+                <th className="p-2 border border-gray-300">Member account</th>
+                <th className="p-2 border border-gray-300">USDT balance</th>
+                <th className="p-2 border border-gray-300">Login</th>
+                <th className="p-2 border border-gray-300">
+                  Registration IP/Time
+                </th>
+                <th className="p-2 border border-gray-300">Address</th>
+                <th className="p-2 border border-gray-300">Recommender</th>
+                <th className="p-2 border border-gray-300">Certification</th>
+                <th className="p-2 border border-gray-300">Status/Type</th>
+                <th className="p-2 border border-gray-300">Operate</th>
               </tr>
             </thead>
+
             <tbody>
-              {filtered.map((u) => (
+              {filtered.map((u, index) => (
                 <tr
                   key={u.id}
-                  className="border-t even:bg-gray-50 hover:bg-gray-50 transition-colors"
+                  className={`${
+                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } hover:bg-orange-50 transition-colors`}
                 >
-                  <td className="px-4 py-3">
+                  <td className="p-2 border border-gray-300 align-top">
                     <input
                       type="checkbox"
                       checked={!!u.selected}
                       onChange={() => toggleSelect(u.id)}
                     />
                   </td>
-                  <td className="px-4 py-3 text-sm">{u.id}</td>
-                  <td className="px-4 py-3 text-sm text-blue-600 underline">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {u.id}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm text-blue-600 underline">
                     {u.email}
                   </td>
-                  <td className="px-4 py-3 text-sm">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
                     {u.usdtBalance.toLocaleString(undefined, {
                       maximumFractionDigits: 8,
                     })}
                   </td>
-                  <td className="px-4 py-3 text-sm">{u.loginCount} times</td>
-                  <td className="px-4 py-3 text-sm">
-                    <div className="text-xs">
-                      Last login IP: {u.registration.ip}
-                    </div>
-                    <div className="text-xs">
-                      Registration time: {u.registration.time}
-                    </div>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {u.loginCount} times
                   </td>
-                  <td className="px-4 py-3 text-sm break-words max-w-[200px]">
+
+                  <td className="p-2 border border-gray-300 align-top text-xs">
+                    <div>Last login IP: {u.registration.ip}</div>
+                    <div>Registration time: {u.registration.time}</div>
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm break-words max-w-[200px]">
                     {u.address}
                   </td>
-                  <td className="px-4 py-3 text-sm text-sky-700">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm text-sky-700">
                     {u.recommender && u.recommender.length > 0 ? (
                       <div className="text-xs space-y-1">
                         {u.recommender.map((r, idx) => (
@@ -427,12 +439,16 @@ export default function UserManagementPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-sm">{u.certification}</td>
-                  <td className="px-4 py-3 text-sm">
-                    <div className="text-xs">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {u.certification}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-xs">
+                    <div>
                       Login: <span className="text-green-600">{u.status}</span>
                     </div>
-                    <div className="text-xs">
+                    <div>
                       Withdrawal:{" "}
                       <span
                         className={`font-medium ${
@@ -444,16 +460,17 @@ export default function UserManagementPage() {
                         {u.withdrawal}
                       </span>
                     </div>
-                    <div className="text-xs">
+                    <div>
                       User Type:{" "}
                       <span className="text-green-600">{u.userType}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-sm">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
                     <div className="flex gap-2">
                       <button
                         onClick={() => openEdit(u)}
-                        className="px-3 py-1 text-xs border rounded"
+                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                       >
                         edit
                       </button>
@@ -473,7 +490,7 @@ export default function UserManagementPage() {
                             )
                           )
                         }
-                        className="px-3 py-1 text-xs border rounded"
+                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                       >
                         {u.status === "Normal" ? "freeze" : "thaw"}
                       </button>
@@ -493,7 +510,7 @@ export default function UserManagementPage() {
                             )
                           )
                         }
-                        className="px-3 py-1 text-xs border rounded"
+                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                       >
                         {u.withdrawal === "Allowed"
                           ? "prohibit withdrawals"

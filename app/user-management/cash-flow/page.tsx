@@ -280,126 +280,51 @@ export default function FundsChangeLogPage() {
           </div>
 
           {/* Table */}
-          <div className="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
+          <div className="bg-white ">
             {/* Desktop Table */}
             <div className="hidden lg:block overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full text-sm text-left border-collapse">
+                <thead className=" text-gray-700 uppercase">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      ID
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="p-2 border border-gray-300">ID</th>
+                    <th className="p-2 border border-gray-300">
                       Member Account
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Currency
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Amount
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="p-2 border border-gray-300">Currency</th>
+                    <th className="p-2 border border-gray-300">Amount</th>
+                    <th className="p-2 border border-gray-300">
                       Amount After Change
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="p-2 border border-gray-300">
                       Operation Type
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Time
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Remark
-                    </th>
+                    <th className="p-2 border border-gray-300">Time</th>
+                    <th className="p-2 border border-gray-300">Remark</th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredRecords.map((record) => (
-                    <tr key={record.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {record.id}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {record.email}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {record.currency}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
-                        {formatAmount(record.amount)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        $
-                        {parseFloat(
-                          record.amountAfterChange.replace(",", ".")
-                        ).toLocaleString("en-US", {
-                          minimumFractionDigits: 4,
-                          maximumFractionDigits: 4,
-                        })}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {record.operationType}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <div>
-                          <div>{formatDate(record.time)}</div>
-                          <div className="text-gray-500">
-                            {formatTime(record.time)}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
-                        {record.remark}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
 
-            {/* Mobile Cards */}
-            <div className="lg:hidden">
-              {filteredRecords.map((record) => (
-                <div
-                  key={record.id}
-                  className="border-b border-gray-200 p-4 hover:bg-gray-50"
-                >
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div className="space-y-2">
-                      <div>
-                        <span className="font-medium text-gray-500">ID:</span>
-                        <span className="ml-2 text-gray-900">{record.id}</span>
-                      </div>
-                      <div>
-                        <span className="font-medium text-gray-500">
-                          Account:
-                        </span>
-                        <div className="mt-1 text-gray-900 break-all">
+                <tbody>
+                  {filteredRecords.length > 0 ? (
+                    filteredRecords.map((record, index) => (
+                      <tr
+                        key={record.id}
+                        className={`${
+                          index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                        } hover:bg-orange-50 transition-colors`}
+                      >
+                        <td className="p-2 border border-gray-300 align-top text-sm">
+                          {record.id}
+                        </td>
+                        <td className="p-2 border border-gray-300 align-top text-sm">
                           {record.email}
-                        </div>
-                      </div>
-                      <div>
-                        <span className="font-medium text-gray-500">
-                          Currency:
-                        </span>
-                        <span className="ml-2 text-gray-900">
+                        </td>
+                        <td className="p-2 border border-gray-300 align-top text-sm">
                           {record.currency}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="font-medium text-gray-500">
-                          Amount:
-                        </span>
-                        <span className="ml-2">
+                        </td>
+                        <td className="p-2 border border-gray-300 align-top text-sm">
                           {formatAmount(record.amount)}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div>
-                        <span className="font-medium text-gray-500">
-                          After Change:
-                        </span>
-                        <span className="ml-2 text-gray-900">
+                        </td>
+                        <td className="p-2 border border-gray-300 align-top text-sm">
                           $
                           {parseFloat(
                             record.amountAfterChange.replace(",", ".")
@@ -407,30 +332,124 @@ export default function FundsChangeLogPage() {
                             minimumFractionDigits: 4,
                             maximumFractionDigits: 4,
                           })}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="font-medium text-gray-500">
-                          Operation:
-                        </span>
-                        <span className="ml-2 text-gray-900">
+                        </td>
+                        <td className="p-2 border border-gray-300 align-top text-sm">
                           {record.operationType}
-                        </span>
+                        </td>
+                        <td className="p-2 border border-gray-300 align-top text-sm">
+                          <div>
+                            <div>{formatDate(record.time)}</div>
+                            <div className="text-gray-500">
+                              {formatTime(record.time)}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="p-2 border border-gray-300 align-top text-sm">
+                          {record.remark}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan={8}
+                        className="text-center text-gray-500 py-6 border border-gray-300 bg-white"
+                      >
+                        No records found
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Cards */}
+            <div className="lg:hidden">
+              {filteredRecords.length > 0 ? (
+                filteredRecords.map((record) => (
+                  <div
+                    key={record.id}
+                    className="border-b border-gray-200 p-4 hover:bg-orange-50 transition-colors"
+                  >
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="space-y-2">
+                        <div>
+                          <span className="font-medium text-gray-500">ID:</span>
+                          <span className="ml-2 text-gray-900">
+                            {record.id}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-medium text-gray-500">
+                            Account:
+                          </span>
+                          <div className="mt-1 text-gray-900 break-all">
+                            {record.email}
+                          </div>
+                        </div>
+                        <div>
+                          <span className="font-medium text-gray-500">
+                            Currency:
+                          </span>
+                          <span className="ml-2 text-gray-900">
+                            {record.currency}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-medium text-gray-500">
+                            Amount:
+                          </span>
+                          <span className="ml-2">
+                            {formatAmount(record.amount)}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="font-medium text-gray-500">Time:</span>
-                        <div className="mt-1 text-gray-900">
-                          {formatDate(record.time)} {formatTime(record.time)}
+
+                      <div className="space-y-2">
+                        <div>
+                          <span className="font-medium text-gray-500">
+                            After Change:
+                          </span>
+                          <span className="ml-2 text-gray-900">
+                            $
+                            {parseFloat(
+                              record.amountAfterChange.replace(",", ".")
+                            ).toLocaleString("en-US", {
+                              minimumFractionDigits: 4,
+                              maximumFractionDigits: 4,
+                            })}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-medium text-gray-500">
+                            Operation:
+                          </span>
+                          <span className="ml-2 text-gray-900">
+                            {record.operationType}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-medium text-gray-500">
+                            Time:
+                          </span>
+                          <div className="mt-1 text-gray-900">
+                            {formatDate(record.time)} {formatTime(record.time)}
+                          </div>
                         </div>
                       </div>
                     </div>
+
+                    <div className="mt-3 pt-3 border-t border-gray-200">
+                      <span className="font-medium text-gray-500">Remark:</span>
+                      <div className="mt-1 text-gray-900">{record.remark}</div>
+                    </div>
                   </div>
-                  <div className="mt-3 pt-3 border-t border-gray-200">
-                    <span className="font-medium text-gray-500">Remark:</span>
-                    <div className="mt-1 text-gray-900">{record.remark}</div>
-                  </div>
+                ))
+              ) : (
+                <div className="text-center text-gray-500 py-6 bg-white">
+                  No records found
                 </div>
-              ))}
+              )}
             </div>
           </div>
 

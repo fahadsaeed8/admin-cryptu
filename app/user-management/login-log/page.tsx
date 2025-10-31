@@ -155,11 +155,11 @@ export default function LoginLogPage() {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto border rounded-lg">
-          <table className="min-w-full text-sm text-left border-collapse">
-            <thead className="bg-gray-100 text-gray-700">
-              <tr>
-                <th className="px-4 py-2 border">
+        <div className="overflow-x-auto bg-white">
+          <table className="min-w-full text-sm border-collapse table-auto">
+            <thead>
+              <tr className="text-left uppercase text-gray-800">
+                <th className="p-2 border border-gray-300">
                   <input
                     type="checkbox"
                     onChange={(e) => handleSelectAll(e.target.checked)}
@@ -168,60 +168,87 @@ export default function LoginLogPage() {
                     }
                   />
                 </th>
-                <th className="px-4 py-2 border">ID</th>
-                <th className="px-4 py-2 border">Username</th>
-                <th className="px-4 py-2 border">Type</th>
-                <th className="px-4 py-2 border">Content</th>
-                <th className="px-4 py-2 border">Operate IP</th>
-                <th className="px-4 py-2 border">Operation time</th>
-                <th className="px-4 py-2 border">State</th>
-                <th className="px-4 py-2 border">Operate</th>
+                <th className="p-2 border border-gray-300">ID</th>
+                <th className="p-2 border border-gray-300">Username</th>
+                <th className="p-2 border border-gray-300">Type</th>
+                <th className="p-2 border border-gray-300">Content</th>
+                <th className="p-2 border border-gray-300">Operate IP</th>
+                <th className="p-2 border border-gray-300">Operation time</th>
+                <th className="p-2 border border-gray-300">State</th>
+                <th className="p-2 border border-gray-300">Operate</th>
               </tr>
             </thead>
+
             <tbody>
-              {filteredLogs.map((log) => (
+              {filteredLogs.map((log, index) => (
                 <tr
                   key={log.id}
-                  className={`border-t ${
-                    selected.includes(log.id) ? "bg-blue-50" : ""
-                  }`}
+                  className={`${
+                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } hover:bg-orange-50 transition-colors`}
                 >
-                  <td className="px-4 py-2 border">
+                  <td className="p-2 border border-gray-300 align-top">
                     <input
                       type="checkbox"
                       checked={selected.includes(log.id)}
                       onChange={(e) => handleSelect(log.id, e.target.checked)}
                     />
                   </td>
-                  <td className="px-4 py-2 border">{log.id}</td>
-                  <td className="px-4 py-2 border">{log.username}</td>
-                  <td className="px-4 py-2 border">{log.type}</td>
-                  <td className="px-4 py-2 border">{log.content}</td>
-                  <td className="px-4 py-2 border">{log.ip}</td>
-                  <td className="px-4 py-2 border">{log.time}</td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {log.id}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {log.username}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {log.type}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {log.content}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {log.ip}
+                  </td>
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
+                    {log.time}
+                  </td>
+
                   <td
-                    className={`px-4 py-2 border font-medium ${
+                    className={`p-2 border border-gray-300 align-top font-medium text-sm ${
                       log.state === "Available"
                         ? "text-green-600"
-                        : "text-red-500"
+                        : "text-red-600"
                     }`}
                   >
                     {log.state}
                   </td>
-                  <td className="px-4 py-2 border">
+
+                  <td className="p-2 border border-gray-300 align-top text-sm">
                     <button
                       onClick={() =>
                         alert(`Editing log entry for ${log.username}`)
                       }
-                      className="bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded text-xs"
+                      className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-indigo-600"
                     >
-                      edit
+                      Edit
                     </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+
+          {filteredLogs.length === 0 && (
+            <div className="p-4 text-center text-gray-500 border-t border-gray-300">
+              No records found
+            </div>
+          )}
         </div>
 
         {/* Footer */}

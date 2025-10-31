@@ -126,46 +126,62 @@ export default function WithdrawalRecordsPage() {
         </div>
 
         {/* Table Section */}
-        <div className="overflow-x-auto bg-white shadow rounded-md">
-          <table className="min-w-[1500px] text-sm text-left">
-            <thead className="bg-gray-100 text-gray-700">
+        <div className="overflow-x-auto bg-white">
+          <table className="min-w-[1500px] text-sm text-left border-collapse">
+            <thead className=" text-gray-700 border-b">
               <tr>
-                <th className="p-3 font-medium">ID</th>
-                <th className="p-3 font-medium">Username</th>
-                <th className="p-3 font-medium">Currency Name</th>
-                <th className="p-3 font-medium">Cash withdrawal network</th>
-                <th className="p-3 font-medium">Application time</th>
-                <th className="p-3 font-medium">Review time</th>
-                <th className="p-3 font-medium">Withdrawal address</th>
-                <th className="p-3 font-medium">Withdrawal amount</th>
-                <th className="p-3 font-medium">Withdrawal fee</th>
-                <th className="p-3 font-medium">Actual amount received</th>
-                <th className="p-3 font-medium">State</th>
-                <th className="p-3 font-medium">Operate</th>
+                <th className="p-2 border text-center">ID</th>
+                <th className="p-2 border">Username</th>
+                <th className="p-2 border">Currency Name</th>
+                <th className="p-2 border">Cash withdrawal network</th>
+                <th className="p-2 border">Application time</th>
+                <th className="p-2 border">Review time</th>
+                <th className="p-2 border">Withdrawal address</th>
+                <th className="p-2 border text-center">Withdrawal amount</th>
+                <th className="p-2 border text-center">Withdrawal fee</th>
+                <th className="p-2 border text-center">
+                  Actual amount received
+                </th>
+                <th className="p-2 border text-center">State</th>
+                <th className="p-2 border text-center">Operate</th>
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={12} className="text-center py-10 text-gray-500">
+                  <td
+                    colSpan={12}
+                    className="text-center py-10 text-gray-500 border"
+                  >
                     No data available.
                   </td>
                 </tr>
               ) : (
-                filtered.map((item) => (
-                  <tr key={item.id} className="border-t hover:bg-gray-50">
-                    <td className="p-3">{item.id}</td>
-                    <td className="p-3">{item.username}</td>
-                    <td className="p-3">{item.currency}</td>
-                    <td className="p-3">{item.network}</td>
-                    <td className="p-3">{item.applicationTime}</td>
-                    <td className="p-3">{item.reviewTime}</td>
-                    <td className="p-3">{item.address}</td>
-                    <td className="p-3">{item.amount.toFixed(6)}</td>
-                    <td className="p-3">{item.fee.toFixed(6)}</td>
-                    <td className="p-3">{item.actual.toFixed(6)}</td>
+                filtered.map((item, index) => (
+                  <tr
+                    key={item.id}
+                    className={`${
+                      index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                    } hover:bg-orange-100 transition-colors`}
+                  >
+                    <td className="p-2 border text-center">{item.id}</td>
+                    <td className="p-2 border">{item.username}</td>
+                    <td className="p-2 border">{item.currency}</td>
+                    <td className="p-2 border">{item.network}</td>
+                    <td className="p-2 border">{item.applicationTime}</td>
+                    <td className="p-2 border">{item.reviewTime}</td>
+                    <td className="p-2 border">{item.address}</td>
+                    <td className="p-2 border text-center">
+                      {item.amount.toFixed(6)}
+                    </td>
+                    <td className="p-2 border text-center">
+                      {item.fee.toFixed(6)}
+                    </td>
+                    <td className="p-2 border text-center">
+                      {item.actual.toFixed(6)}
+                    </td>
                     <td
-                      className={`p-3 font-semibold ${
+                      className={`p-2 border text-center font-semibold ${
                         item.state === "Finish"
                           ? "text-green-600"
                           : "text-blue-600"
@@ -173,7 +189,7 @@ export default function WithdrawalRecordsPage() {
                     >
                       {item.state}
                     </td>
-                    <td className="p-3 space-x-2">
+                    <td className="p-2 border text-center space-x-2">
                       {item.state === "Finish" ? (
                         <button className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-xs">
                           Processed
@@ -202,7 +218,7 @@ export default function WithdrawalRecordsPage() {
           </table>
 
           {/* Footer / Pagination Info */}
-          <div className="p-3 text-gray-600 text-sm border-t">
+          <div className="p-2 text-gray-600 text-sm border-t">
             {filtered.length} record{filtered.length !== 1 ? "s" : ""}, page 1/1
           </div>
         </div>

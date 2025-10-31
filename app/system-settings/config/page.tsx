@@ -114,8 +114,8 @@ export default function Page() {
   return (
     <DashboardLayout>
       <main className="min-h-screen">
-        <div className="max-w-6xl mx-auto bg-white shadow rounded-lg overflow-hidden">
-          <div className="px-6 py-6 border-b">
+        <div className="max-w-6xl mx-auto bg-white overflow-hidden">
+          <div className="px-6 py-6 border-b border-gray-300">
             <h1 className="text-2xl font-semibold">
               System Parameter Settings
             </h1>
@@ -168,13 +168,13 @@ export default function Page() {
                       value={form[key] as string}
                       onChange={(e) => handleChange(key, e.target.value as any)}
                       rows={3}
-                      className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                      className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
                     />
                   ) : (
                     <input
                       value={form[key] as string}
                       onChange={(e) => handleChange(key, e.target.value as any)}
-                      className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                      className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
                     />
                   )}
                   {errors[key] && (
@@ -193,7 +193,7 @@ export default function Page() {
                 onChange={(e) =>
                   handleChange("websiteRegistration", e.target.value as any)
                 }
-                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
                 <option value="open">Open</option>
                 <option value="closed">Closed</option>
@@ -209,7 +209,7 @@ export default function Page() {
                 onChange={(e) =>
                   handleChange("withdrawalMaster", e.target.value as any)
                 }
-                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
                 <option value="open">Open</option>
                 <option value="closed">Closed</option>
@@ -225,7 +225,7 @@ export default function Page() {
                 onChange={(e) =>
                   handleChange("includeFreeTrialMachine", e.target.value as any)
                 }
-                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
                 <option value="no_delivery">No Delivery</option>
                 <option value="with_delivery">With Delivery</option>

@@ -165,16 +165,16 @@ const Page = () => {
           </div>
 
           {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-gray-200 text-sm text-gray-700">
-              <thead className="bg-gray-100">
+          <div className="overflow-x-auto  bg-white">
+            <table className="min-w-full text-sm text-gray-700 border-collapse">
+              <thead className=" text-gray-700 border-b border-gray-300">
                 <tr>
                   {[
                     "ID",
                     "Member account",
                     "Trading Pair",
-                    "direction",
-                    "state",
+                    "Direction",
+                    "State",
                     "Entrusted amount",
                     "Entry price per unit",
                     "Closing price",
@@ -183,53 +183,98 @@ const Page = () => {
                   ].map((header) => (
                     <th
                       key={header}
-                      className="border px-3 py-2 text-left font-medium text-gray-600"
+                      className="p-2 border border-gray-300 text-left font-medium text-gray-600"
                     >
                       {header}
                     </th>
                   ))}
                 </tr>
               </thead>
+
               <tbody>
-                {filtered.map((item) => (
-                  <tr key={item.id} className="hover:bg-gray-50">
-                    <td className="border px-3 py-2">{item.id}</td>
-                    <td className="border px-3 py-2">{item.member}</td>
-                    <td className="border px-3 py-2">{item.tradingPair}</td>
-                    <td className="border px-3 py-2 text-green-600 font-medium">
-                      {item.direction}
-                    </td>
-                    <td className="border px-3 py-2 text-green-600 font-medium">
-                      {item.state}
-                    </td>
-                    <td className="border px-3 py-2">{item.entrustedAmount}</td>
-                    <td className="border px-3 py-2">{item.entryPrice}</td>
+                {filtered.length === 0 ? (
+                  <tr>
                     <td
-                      className={`border px-3 py-2 ${
-                        item.closingPrice > item.entryPrice
-                          ? "text-green-600"
-                          : "text-red-600"
-                      }`}
+                      colSpan={10}
+                      className="text-center py-10 text-gray-500 italic border"
                     >
-                      {item.closingPrice}
-                    </td>
-                    <td className="border px-3 py-2">{item.entryTime}</td>
-                    <td
-                      className={`border px-3 py-2 font-semibold ${
-                        item.profitLoss >= 0 ? "text-green-600" : "text-red-600"
-                      }`}
-                    >
-                      {item.profitLoss.toFixed(2)}
+                      No records found.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  filtered.map((item, index) => (
+                    <tr
+                      key={item.id}
+                      className={`${
+                        index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                      } hover:bg-orange-50 transition-colors`}
+                    >
+                      <td className="p-2 border border-gray-300 text-center">
+                        {item.id}
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        {item.member}
+                      </td>
+                      <td className="p-2 border border-gray-300">
+                        {item.tradingPair}
+                      </td>
+                      <td
+                        className={`p-2 border border-gray-300 font-medium ${
+                          item.direction === "Buy"
+                            ? "text-green-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {item.direction}
+                      </td>
+                      <td
+                        className={`p-2 border border-gray-300 font-medium ${
+                          item.state === "Completed"
+                            ? "text-green-600"
+                            : "text-blue-600"
+                        }`}
+                      >
+                        {item.state}
+                      </td>
+                      <td className="p-2 border border-gray-300 text-center">
+                        {item.entrustedAmount}
+                      </td>
+                      <td className="p-2 border border-gray-300 text-center">
+                        {item.entryPrice}
+                      </td>
+                      <td
+                        className={`p-2 border border-gray-300 text-center ${
+                          item.closingPrice > item.entryPrice
+                            ? "text-green-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {item.closingPrice}
+                      </td>
+                      <td className="p-2 border border-gray-300 text-center">
+                        {item.entryTime}
+                      </td>
+                      <td
+                        className={`p-2 border border-gray-300 text-center font-semibold ${
+                          item.profitLoss >= 0
+                            ? "text-green-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {item.profitLoss.toFixed(2)}
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
 
-            {filtered.length === 0 && (
-              <p className="text-center py-4 text-gray-500">
-                No records found.
-              </p>
+            {/* Footer */}
+            {filtered.length > 0 && (
+              <div className="p-2 text-gray-600 text-sm border-t border-gray-300">
+                {filtered.length} record{filtered.length !== 1 ? "s" : ""}, page
+                1/1
+              </div>
             )}
           </div>
         </div>
