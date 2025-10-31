@@ -64,6 +64,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // ✅ import router
 import { FaUser, FaLock, FaShieldAlt } from "react-icons/fa";
+import Link from "next/link";
 
 const LoginPage: React.FC = () => {
   const router = useRouter(); // ✅ initialize router
@@ -161,15 +162,6 @@ const LoginPage: React.FC = () => {
             Login
           </button>
         </form>
-
-        <div className="text-center pb-4">
-          <h1 className="font-semibold text-[#a5a1cb]">
-            New Customer?{" "}
-            <span className=" text-white cursor-pointer">
-              <Link href={"/signup"}> Start here </Link>
-            </span>
-          </h1>
-        </div>
       </div>
     </div>
   );

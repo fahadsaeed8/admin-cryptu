@@ -25,6 +25,8 @@ import {
   ShoppingCart,
   HardDrive,
   LogOut,
+  SquarePlus,
+  SquareMinus,
 } from "lucide-react";
 
 const tabs = [
@@ -132,15 +134,15 @@ export default function DashboardLayout({
 
         {/* Accordion Header */}
         <div
-          className="flex items-center justify-between px-4 py-3 text-sm font-semibold uppercase tracking-wide cursor-pointer select-none border-b border-gray-700 hover:bg-gray-800 transition-all"
+          className="flex items-center justify-start gap-3 px-4 py-3 text-sm font-semibold uppercase tracking-wide cursor-pointer select-none border-b border-gray-700 hover:bg-gray-800 transition-all duration-300 ease-in-out"
           onClick={() => setAccordionOpen(!accordionOpen)}
         >
-          <span>{accordionTitle}</span>
           {accordionOpen ? (
-            <ChevronDown className="w-4 h-4" />
+            <SquareMinus className="w-4 h-4" />
           ) : (
-            <ChevronRight className="w-4 h-4" />
+            <SquarePlus className="w-4 h-4" />
           )}
+          <span>{accordionTitle}</span>
         </div>
 
         {/* Sidebar Items */}
