@@ -161,6 +161,15 @@ const LoginPage: React.FC = () => {
             Login
           </button>
         </form>
+
+        <div className="text-center pb-4">
+          <h1 className="font-semibold text-[#a5a1cb]">
+            New Customer?{" "}
+            <span className=" text-white cursor-pointer">
+              <Link href={"/signup"}> Start here </Link>
+            </span>
+          </h1>
+        </div>
       </div>
     </div>
   );
