@@ -96,15 +96,15 @@ export default function Page() {
 
   return (
     <DashboardLayout>
-      <main className="min-h-screen">
-        <div className="max-w-5xl mx-auto bg-white overflow-hidden">
-          <div className="px-6 py-3 border-b border-gray-300">
+      <main className="bg-white p-2 md:p-4">
+        <div className="max-w-6xl mx-auto bg-white overflow-hidden">
+          <div className="border-b border-gray-300">
             <h2 className="text-xl font-semibold">
               Basic website configuration
             </h2>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6">
+          <form onSubmit={handleSubmit} className="py-6">
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                 <label className="md:col-span-2 text-sm font-medium text-gray-700 py-2">
@@ -305,9 +305,9 @@ export default function Page() {
                       handleInput("statusOfWebsite", e.target.value)
                     }
                   >
-                    <option>正常</option>
-                    <option>维护</option>
-                    <option>关闭</option>
+                    <option>Normal</option>
+                    <option>Maintenance</option>
+                    <option>Closed</option>
                   </select>
                 </div>
                 <div className="md:col-span-2 text-sm text-gray-500"></div>

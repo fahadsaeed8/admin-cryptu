@@ -24,12 +24,14 @@ export default function DepositListPage() {
 
   return (
     <DashboardLayout>
-      <div className="">
-        <h1 className="text-xl font-semibold mb-4">Deposit List</h1>
+      <div className=" min-h-screen bg-white p-2 md:p-4">
+        <h1 className="text-xl font-semibold mb-4 border-b border-gray-300">
+          Deposit List
+        </h1>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 items-center bg-white shadow p-4 rounded-md mb-6">
-          <select className="border rounded-md px-3 py-2 text-sm">
+        <div className="flex flex-wrap gap-2 items-center mb-6">
+          <select className="border border-gray-300 rounded-md px-3 py-2 text-sm">
             <option>Username</option>
             <option>User rec</option>
           </select>
@@ -38,14 +40,14 @@ export default function DepositListPage() {
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="border rounded-md px-3 py-2 text-sm"
+            className="border border-gray-300 rounded-md px-3 py-2 text-sm"
           />
 
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="border rounded-md px-3 py-2 text-sm"
+            className="border border-gray-300 rounded-md px-3 py-2 text-sm"
           />
 
           <input
@@ -53,10 +55,10 @@ export default function DepositListPage() {
             placeholder="Please enter your query"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 min-w-[200px] border rounded-md px-3 py-2 text-sm"
+            className="flex-1 min-w-[200px] border border-gray-300 rounded-md px-3 py-2 text-sm"
           />
 
-          <button className="bg-yellow-400 hover:bg-yellow-500 text-white font-medium px-4 py-2 rounded-md">
+          <button className="bg-yellow-400 cursor-pointer hover:bg-yellow-500 text-white font-medium px-4 py-2 rounded-md">
             Initial search
           </button>
         </div>
@@ -143,7 +145,7 @@ export default function DepositListPage() {
                       {item.state}
                     </td>
                     <td className="p-2 border border-gray-300 text-center">
-                      <button className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
+                      <button className="px-2 py-1 cursor-pointer text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
                         View
                       </button>
                     </td>

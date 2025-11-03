@@ -59,18 +59,20 @@ export default function UserAssetsPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold mb-4">User Asset Management</h1>
+      <div className=" bg-white p-2 md:p-4 min-h-screen">
+        <div className="">
+          <h1 className="md:text-2xl font-bold mb-4 border-b border-gray-300">
+            User Asset Management
+          </h1>
 
           {/* Search Bar */}
-          <div className="flex items-center space-x-4 mb-6">
+          <div className="flex flex-wrap md:flex-nowrap items-center gap-4 mb-6">
             <input
               type="text"
               placeholder="Search by username..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 border rounded px-3 py-2"
+              className="flex-1 border border-gray-300 rounded px-3 py-2"
             />
             <button
               onClick={() => setQuery("")}
@@ -84,7 +86,7 @@ export default function UserAssetsPage() {
           <div className="overflow-x-auto bg-white">
             <table className="w-full text-sm text-left border-collapse table-auto">
               <thead className="text-gray-800 uppercase">
-                <tr className="bg-gray-100">
+                <tr className="">
                   <th className="p-2 border border-gray-300">ID</th>
                   <th className="p-2 border border-gray-300">Username</th>
                   <th className="p-2 border border-gray-300">BTC</th>

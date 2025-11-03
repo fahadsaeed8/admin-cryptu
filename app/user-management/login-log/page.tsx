@@ -89,21 +89,23 @@ export default function LoginLogPage() {
 
   return (
     <DashboardLayout>
-      <div className="p-6 max-w-7xl mx-auto">
-        <h2 className="text-lg font-semibold mb-4">Login Log</h2>
+      <div className=" bg-white p-2 md:p-4">
+        <h2 className="text-lg font-semibold mb-4 border-b border-gray-300">
+          Login Log
+        </h2>
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-2 mb-4">
           <button
             onClick={handleNew}
-            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+            className="bg-green-500 cursor-pointer hover:bg-green-600 text-white px-3 py-1 rounded"
           >
             New
           </button>
           <button
             onClick={handleEnable}
             disabled={!selected.length}
-            className={`px-3 py-1 rounded text-white ${
+            className={`px-3 py-1 rounded cursor-pointer text-white ${
               selected.length
                 ? "bg-sky-500 hover:bg-sky-600"
                 : "bg-sky-300 cursor-not-allowed"
@@ -114,7 +116,7 @@ export default function LoginLogPage() {
           <button
             onClick={handleDisable}
             disabled={!selected.length}
-            className={`px-3 py-1 rounded text-white ${
+            className={`px-3 py-1 rounded cursor-pointer text-white ${
               selected.length
                 ? "bg-yellow-500 hover:bg-yellow-600"
                 : "bg-yellow-300 cursor-not-allowed"
@@ -125,7 +127,7 @@ export default function LoginLogPage() {
           <button
             onClick={handleDelete}
             disabled={!selected.length}
-            className={`px-3 py-1 rounded text-white ${
+            className={`px-3 py-1 rounded cursor-pointer text-white ${
               selected.length
                 ? "bg-red-500 hover:bg-red-600"
                 : "bg-red-300 cursor-not-allowed"
@@ -134,20 +136,20 @@ export default function LoginLogPage() {
             Delete
           </button>
 
-          <div className="ml-auto flex gap-2 items-center">
-            <select className="border rounded px-2 py-1 text-sm">
+          <div className=" flex lg:flex-nowrap flex-wrap gap-2 items-center">
+            <select className="border border-gray-300 rounded px-2 py-1 text-sm">
               <option>All states</option>
               <option>Available</option>
               <option>Disabled</option>
             </select>
-            <select className="border rounded px-2 py-1 text-sm">
+            <select className="border border-gray-300 rounded px-2 py-1 text-sm">
               <option>username</option>
               <option>IP</option>
             </select>
             <input
               type="text"
               placeholder="Please enter your query"
-              className="border rounded px-2 py-1 text-sm w-48"
+              className="border border-gray-300 rounded px-2 py-1 text-sm w-48"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -234,7 +236,7 @@ export default function LoginLogPage() {
                       onClick={() =>
                         alert(`Editing log entry for ${log.username}`)
                       }
-                      className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-indigo-600"
+                      className="px-2 py-1 cursor-pointer text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-indigo-600"
                     >
                       Edit
                     </button>

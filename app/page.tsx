@@ -27,6 +27,7 @@ import {
   LogOut,
   SquarePlus,
   SquareMinus,
+  ChevronLeft,
 } from "lucide-react";
 
 const tabs = [
@@ -113,12 +114,13 @@ export default function DashboardLayout({
   }, [pathname, router]);
 
   const handleLogout = () => {
-    // Add logout logic here (e.g., clear tokens, redirect to login)
     router.push("/login");
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 w-full max-w-[2160px] mx-auto">
+    <div
+      className="flex flex-col lg:flex-row h-screen bg-gray-100 w-full max-w-[2160px] mx-auto" // ✅ responsive fix: use flex-col for mobile/tablet
+    >
       {/* Sidebar */}
       <aside
         className={`fixed lg:static top-0 left-0 h-full w-64 bg-[#1f1f2e] text-white flex flex-col transform transition-transform duration-300 z-40
@@ -127,8 +129,8 @@ export default function DashboardLayout({
         } lg:translate-x-0`}
       >
         {/* Logo */}
-        <div className="py-2 font-bold text-xl flex items-center justify-center gap-2 border-b border-gray-700">
-          <img src="/alogn.png" className="w-7" alt="Logo" />
+        <div className="py-[8px] font-bold text-xl flex items-center justify-center gap-2 border-b border-gray-700">
+          <img src="/alogn.png" className="w-11" alt="Logo" />
         </div>
 
         {/* Accordion Header */}
@@ -153,14 +155,21 @@ export default function DashboardLayout({
                   key={item.label}
                   href={item.path}
                   onClick={() => setSidebarOpen(false)} // close on mobile
-                  className={`flex items-center gap-2 px-3 py-2 text-sm transition-all ${
+                  className={`flex items-center justify-between gap-2 px-3 py-2 text-sm transition-all ${
                     pathname === item.path
-                      ? "bg-white text-gray-900"
+                      ? "bg-white text-gray-900 font-medium"
                       : "hover:bg-gray-300 hover:text-gray-900"
                   }`}
                 >
-                  {iconMap[item.label] || <FileText className="w-4 h-4" />}
-                  <span>{item.label}</span>
+                  <div className="flex items-center gap-2">
+                    {iconMap[item.label] || <FileText className="w-4 h-4" />}
+                    <span>{item.label}</span>
+                  </div>
+
+                  {/* Show arrow for active item */}
+                  {pathname === item.path && (
+                    <ChevronRight className="w-4 h-4 text-orange-500" />
+                  )}
                 </Link>
               ))}
             </nav>
@@ -179,18 +188,22 @@ export default function DashboardLayout({
         </div>
       </aside>
 
-      {/* Overlay for mobile */}
+      {/* ✅ Overlay for mobile/tablet */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden"
+          className="fixed inset-0 bg-black/40 z-30 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
 
       {/* Main Area */}
-      <main className="flex-1 flex flex-col">
+      <main
+        className="flex-1 flex flex-col overflow-hidden h-full" // ✅ responsive fix: ensure scroll inside main content
+      >
         {/* Top Navbar */}
-        <header className="flex flex-wrap items-center justify-between bg-white border-b text-sm font-medium text-gray-600 px-4">
+        <header
+          className="flex flex-wrap items-center justify-between bg-white text-sm font-medium text-gray-600 px-3 md:px-0 sticky top-0 z-20" // ✅ responsive fix: sticky header
+        >
           {/* Mobile Toggle */}
           <button
             className="lg:hidden p-2"
@@ -203,35 +216,40 @@ export default function DashboardLayout({
             )}
           </button>
 
-          <div className="flex flex-wrap flex-1 justify-center lg:justify-start">
-            {tabs.map((tab) => {
-              const firstSubItem = sidebarConfig[tab.path]?.[0];
-              return (
-                <button
-                  key={tab.path}
-                  onClick={() => {
-                    if (firstSubItem) {
-                      router.push(firstSubItem.path);
-                      setActiveTab(tab.path);
-                      setAccordionOpen(true);
-                      setSidebarOpen(false);
-                    }
-                  }}
-                  className={`px-3 md:px-4 py-3 border-b-2 cursor-pointer transition-all text-xs md:text-sm ${
-                    pathname.startsWith(tab.path)
-                      ? "border-blue-500 text-blue-600 font-semibold"
-                      : "border-transparent hover:border-gray-300"
-                  }`}
-                >
-                  {tab.name}
-                </button>
-              );
-            })}
+          {/* ✅ Tabs wrap and scroll horizontally on mobile */}
+          <div className="flex overflow-x-auto scrollbar-hide w-full justify-start lg:justify-start">
+            <div className="flex flex-nowrap">
+              {tabs.map((tab) => {
+                const firstSubItem = sidebarConfig[tab.path]?.[0];
+                return (
+                  <button
+                    key={tab.path}
+                    onClick={() => {
+                      if (firstSubItem) {
+                        router.push(firstSubItem.path);
+                        setActiveTab(tab.path);
+                        setAccordionOpen(true);
+                        setSidebarOpen(false);
+                      }
+                    }}
+                    className={`px-3 md:px-4 py-[20px] cursor-pointer transition-all text-xs md:text-sm whitespace-nowrap ${
+                      pathname.startsWith(tab.path)
+                        ? "bg-blue-500 text-white font-semibold"
+                        : "border-transparent hover:border-gray-300"
+                    }`}
+                  >
+                    {tab.name}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 max-w-[1110px] overflow-y-auto p-4 md:p-6">
+        <div
+          className="flex-1 overflow-y-auto  lg:p-5 bg-[#f1f2f7] scrollbar-hide" // ✅ responsive fix: scrollable and padded content
+        >
           {children}
         </div>
       </main>

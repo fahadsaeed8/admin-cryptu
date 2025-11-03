@@ -211,8 +211,8 @@ export default function MarketAllocationPage() {
 
   return (
     <DashboardLayout>
-      <div className=" bg-white p-3">
-        <h2 className="text-lg font-semibold mb-4">
+      <div className="bg-white p-2 md:p-4">
+        <h2 className="text-lg font-semibold mb-4 border-b border-gray-300">
           Market allocation (trading pairs that access external data)
         </h2>
 
@@ -220,25 +220,25 @@ export default function MarketAllocationPage() {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={openNew}
-              className="px-3 py-1.5 rounded bg-green-500 text-white text-sm shadow-sm hover:bg-green-600"
+              className="px-3 py-1.5 cursor-pointer rounded bg-green-500 text-white text-sm shadow-sm hover:bg-green-600"
             >
               New
             </button>
             <button
               onClick={() => performBulk("enable")}
-              className="px-3 py-1.5 rounded bg-blue-500 text-white text-sm shadow-sm hover:bg-blue-600"
+              className="px-3 py-1.5 cursor-pointer rounded bg-blue-500 text-white text-sm shadow-sm hover:bg-blue-600"
             >
               Enable
             </button>
             <button
               onClick={() => performBulk("disable")}
-              className="px-3 py-1.5 rounded bg-amber-500 text-white text-sm shadow-sm hover:bg-amber-600"
+              className="px-3 py-1.5 cursor-pointer rounded bg-amber-500 text-white text-sm shadow-sm hover:bg-amber-600"
             >
               Disable
             </button>
             <button
               onClick={() => performBulk("delete")}
-              className="px-3 py-1.5 rounded bg-red-500 text-white text-sm shadow-sm hover:bg-red-600"
+              className="px-3 py-1.5 cursor-pointer rounded bg-red-500 text-white text-sm shadow-sm hover:bg-red-600"
             >
               Delete
             </button>
@@ -339,13 +339,13 @@ export default function MarketAllocationPage() {
                     <td className="p-2 border border-gray-300 align-top text-sm">
                       <div className="flex gap-2">
                         <button
-                          className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
+                          className="px-2 py-1 text-xs cursor-pointer bg-white border border-gray-300 rounded hover:bg-gray-100"
                           onClick={() => openEdit(row)}
                         >
                           edit
                         </button>
                         <button
-                          className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
+                          className="px-2 py-1 text-xs cursor-pointer bg-white border border-gray-300 rounded hover:bg-gray-100"
                           onClick={() =>
                             setData((prev) =>
                               prev.map((p) =>
@@ -382,7 +382,7 @@ export default function MarketAllocationPage() {
             .map((row) => (
               <div
                 key={row.id}
-                className="border rounded p-3 bg-white shadow-sm"
+                className="border border-gray-300 rounded p-3 bg-white shadow-sm"
               >
                 <div className="flex items-start justify-between">
                   <div>
@@ -412,7 +412,7 @@ export default function MarketAllocationPage() {
                     </div>
                     <div>
                       <button
-                        className="text-xs px-2 py-1 border rounded"
+                        className="text-xs px-2 py-1 border border-gray-300 cursor-pointer rounded"
                         onClick={() => openEdit(row)}
                       >
                         edit
@@ -499,7 +499,7 @@ function PairForm({
         <input
           value={pair}
           onChange={(e) => setPair(e.target.value)}
-          className="mt-1 block w-full border rounded px-3 py-2"
+          className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           placeholder="e.g. BTC/USDT"
         />
       </div>
@@ -510,7 +510,7 @@ function PairForm({
           value={sort}
           onChange={(e) => setSort(Number(e.target.value || 0))}
           type="number"
-          className="mt-1 block w-36 border rounded px-3 py-2"
+          className="mt-1 block w-36 border border-gray-300 rounded px-3 py-2"
         />
       </div>
 
@@ -520,7 +520,7 @@ function PairForm({
           <select
             value={displayStatus}
             onChange={(e) => setDisplayStatus(e.target.value as DisplayStatus)}
-            className="mt-1 block border rounded px-3 py-2"
+            className="mt-1 block border border-gray-300 rounded px-3 py-2"
           >
             <option value="Available">Available</option>
             <option value="Disable">Disable</option>
@@ -534,7 +534,7 @@ function PairForm({
           <select
             value={txStatus}
             onChange={(e) => setTxStatus(e.target.value as TxStatus)}
-            className="mt-1 block border rounded px-3 py-2"
+            className="mt-1 block border border-gray-300 rounded px-3 py-2"
           >
             <option value="normal">normal</option>
             <option value="prohibit">prohibit</option>
@@ -546,13 +546,13 @@ function PairForm({
         <button
           type="button"
           onClick={onCancel}
-          className="px-3 py-1.5 border rounded"
+          className="px-3 py-1.5 border border-gray-300 cursor-pointer rounded"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-3 py-1.5 bg-blue-600 text-white rounded"
+          className="px-3 py-1.5 bg-blue-600 cursor-pointer text-white rounded"
         >
           Save
         </button>

@@ -256,103 +256,104 @@ export default function UserManagementPage() {
 
   return (
     <DashboardLayout>
-      <div className="">
-        <h2 className="text-lg font-semibold mb-4">User Management</h2>
+      <div className="bg-white p-2 md:p-4">
+        <h2 className="text-lg font-semibold mb-4 border-b border-gray-300">
+          User Management
+        </h2>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
           <div className="flex flex-wrap gap-2">
             <button
               onClick={openNew}
-              className="px-3 py-1.5 rounded bg-green-500 text-white text-sm"
+              className="px-3 py-1.5 cursor-pointer rounded bg-green-500 text-white text-sm"
             >
               New
             </button>
             <button
               onClick={() => performBulk("freeze")}
-              className="px-3 py-1.5 rounded bg-sky-500 text-white text-sm"
+              className="px-3 py-1.5 cursor-pointer rounded bg-sky-500 text-white text-sm"
             >
               freeze
             </button>
             <button
               onClick={() => performBulk("thaw")}
-              className="px-3 py-1.5 rounded bg-rose-500 text-white text-sm"
+              className="px-3 py-1.5 cursor-pointer rounded bg-rose-500 text-white text-sm"
             >
               thaw
             </button>
             <button
               onClick={() => performBulk("allow_withdrawals")}
-              className="px-3 py-1.5 rounded bg-blue-500 text-white text-sm"
+              className="px-3 py-1.5 cursor-pointer rounded bg-blue-500 text-white text-sm"
             >
               Allow withdrawals
             </button>
             <button
               onClick={() => performBulk("prohibit_withdrawals")}
-              className="px-3 py-1.5 rounded bg-red-500 text-white text-sm"
+              className="px-3 py-1.5 cursor-pointer rounded bg-red-500 text-white text-sm"
             >
               Withdrawals are prohibited
             </button>
             <button
               onClick={() => performBulk("delete")}
-              className="px-3 py-1.5 rounded bg-red-700 text-white text-sm"
+              className="px-3 py-1.5 cursor-pointer rounded bg-red-700 text-white text-sm"
             >
               delete
             </button>
             <button
               onClick={() => performBulk("mass_notification")}
-              className="px-3 py-1.5 rounded bg-lime-500 text-white text-sm"
+              className="px-3 py-1.5 cursor-pointer rounded bg-lime-500 text-white text-sm"
             >
               Mass notification
             </button>
           </div>
+        </div>
+        <div className="flex items-center gap-2 flex-wrap my-4">
+          <select
+            value={stateFilter}
+            onChange={(e) => setStateFilter(e.target.value)}
+            className="border border-gray-300 rounded px-2 py-1 text-sm"
+          >
+            {stateOptions.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
 
-          <div className="flex items-center gap-2 flex-wrap">
-            <select
-              value={stateFilter}
-              onChange={(e) => setStateFilter(e.target.value)}
-              className="border rounded px-2 py-1 text-sm"
-            >
-              {stateOptions.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+          <select
+            value={userTypeFilter}
+            onChange={(e) => setUserTypeFilter(e.target.value)}
+            className="border border-gray-300 rounded px-2 py-1 text-sm"
+          >
+            {userTypes.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
 
-            <select
-              value={userTypeFilter}
-              onChange={(e) => setUserTypeFilter(e.target.value)}
-              className="border rounded px-2 py-1 text-sm"
-            >
-              {userTypes.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
+          <select
+            value={emailFilter}
+            onChange={(e) => setEmailFilter(e.target.value)}
+            className="border border-gray-300 rounded px-2 py-1 text-sm max-w-xs"
+          >
+            {emailOptions.map((eopt) => (
+              <option key={eopt} value={eopt}>
+                {eopt}
+              </option>
+            ))}
+          </select>
 
-            <select
-              value={emailFilter}
-              onChange={(e) => setEmailFilter(e.target.value)}
-              className="border rounded px-2 py-1 text-sm max-w-xs"
-            >
-              {emailOptions.map((eopt) => (
-                <option key={eopt} value={eopt}>
-                  {eopt}
-                </option>
-              ))}
-            </select>
-
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Please enter your email or id"
-              className="border rounded px-2 py-1 text-sm w-56"
-            />
-          </div>
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Please enter your email or id"
+            className="border border-gray-300 rounded px-2 py-1 text-sm w-56"
+          />
         </div>
 
         {/* Desktop table with remembered styling */}
-        <div className="hidden sm:block bg-white overflow-x-auto">
+        <div className=" bg-white overflow-x-auto">
           <table className="min-w-full text-sm border-collapse table-auto">
             <thead>
               <tr className="text-left uppercase text-gray-800">
@@ -470,7 +471,7 @@ export default function UserManagementPage() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => openEdit(u)}
-                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
+                        className="px-2 py-1 cursor-pointer text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                       >
                         edit
                       </button>
@@ -490,7 +491,7 @@ export default function UserManagementPage() {
                             )
                           )
                         }
-                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
+                        className="px-2 py-1 cursor-pointer text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                       >
                         {u.status === "Normal" ? "freeze" : "thaw"}
                       </button>
@@ -510,7 +511,7 @@ export default function UserManagementPage() {
                             )
                           )
                         }
-                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
+                        className="px-2 py-1 cursor-pointer text-xs bg-white border border-gray-300 rounded hover:bg-gray-100"
                       >
                         {u.withdrawal === "Allowed"
                           ? "prohibit withdrawals"
@@ -525,9 +526,12 @@ export default function UserManagementPage() {
         </div>
 
         {/* Mobile card list */}
-        <div className="sm:hidden mt-4 space-y-3">
+        {/* <div className="sm:hidden mt-4 space-y-3">
           {filtered.map((u) => (
-            <div key={u.id} className="border rounded p-3 bg-white shadow-sm">
+            <div
+              key={u.id}
+              className="border border-gray-300 rounded p-3 bg-white shadow-sm"
+            >
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-3">
@@ -564,7 +568,7 @@ export default function UserManagementPage() {
                   <div>
                     <button
                       onClick={() => openEdit(u)}
-                      className="text-xs px-2 py-1 border rounded"
+                      className="text-xs px-2 cursor-pointer py-1 border border-gray-300 rounded"
                     >
                       edit
                     </button>
@@ -573,7 +577,7 @@ export default function UserManagementPage() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Modal for add/edit */}
         {showModal && (
@@ -672,7 +676,7 @@ function UserForm({
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 block w-full border rounded px-3 py-2"
+          className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
         />
       </div>
 
@@ -683,7 +687,7 @@ function UserForm({
             type="number"
             value={balance}
             onChange={(e) => setBalance(Number(e.target.value || 0))}
-            className="mt-1 block w-full border rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           />
         </div>
         <div>
@@ -692,7 +696,7 @@ function UserForm({
             type="number"
             value={loginCount}
             onChange={(e) => setLoginCount(Number(e.target.value || 0))}
-            className="mt-1 block w-full border rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           />
         </div>
       </div>
@@ -703,7 +707,7 @@ function UserForm({
           <input
             value={ip}
             onChange={(e) => setIp(e.target.value)}
-            className="mt-1 block w-full border rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           />
         </div>
         <div>
@@ -713,7 +717,7 @@ function UserForm({
           <input
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="mt-1 block w-full border rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           />
         </div>
       </div>
@@ -723,7 +727,7 @@ function UserForm({
         <input
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          className="mt-1 block w-full border rounded px-3 py-2"
+          className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
         />
       </div>
 
@@ -733,7 +737,7 @@ function UserForm({
           <select
             value={cert}
             onChange={(e) => setCert(e.target.value)}
-            className="mt-1 block w-full border rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           >
             <option>Not submitted</option>
             <option>Authentication successful</option>
@@ -744,7 +748,7 @@ function UserForm({
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value as UserStatus)}
-            className="mt-1 block w-full border rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           >
             <option value="Normal">Normal</option>
             <option value="Frozen">Frozen</option>
@@ -755,7 +759,7 @@ function UserForm({
           <select
             value={withdrawal}
             onChange={(e) => setWithdrawal(e.target.value as WithdrawalState)}
-            className="mt-1 block w-full border rounded px-3 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2"
           >
             <option value="Allowed">Allowed</option>
             <option value="Prohibited">Prohibited</option>
@@ -767,13 +771,13 @@ function UserForm({
         <button
           type="button"
           onClick={onCancel}
-          className="px-3 py-1.5 border rounded"
+          className="px-3 cursor-pointer py-1.5 border border-gray-300 rounded"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-3 py-1.5 bg-blue-600 text-white rounded"
+          className="px-3 py-1.5 cursor-pointer bg-blue-600 text-white rounded"
         >
           Save
         </button>

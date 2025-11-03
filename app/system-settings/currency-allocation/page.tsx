@@ -170,52 +170,51 @@ export default function CurrencyManagementPage() {
 
   return (
     <DashboardLayout>
-      <div className="">
+      <div className="bg-white p-2 md:p-4">
         <div className=" bg-white">
-          <div className="px-4 py-4 border-b border-gray-300 flex items-center justify-between gap-4">
+          <div className=" mb-4 border-b border-gray-300 flex items-center justify-between gap-4">
             <h2 className="text-lg font-semibold">Currency Management</h2>
-
-            <div className="flex items-center gap-2">
-              <button className="px-3 py-1 bg-green-500 text-white rounded text-sm">
-                New
-              </button>
-              <button
-                className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
-                onClick={() => alert("Supplement TRX miner fees (stub)")}
-              >
-                Supplement TRX miner fees
-              </button>
-              <button
-                className="px-3 py-1 bg-sky-600 text-white rounded text-sm"
-                onClick={() => alert("Check balance (stub)")}
-              >
-                Check balance
-              </button>
-              <button className="px-3 py-1 bg-indigo-600 text-white rounded text-sm">
-                One-click USDT aggregation
-              </button>
-              <button
-                className="px-3 py-1 bg-gray-200 text-gray-800 rounded text-sm"
-                onClick={bulkEnable}
-              >
-                Enable
-              </button>
-              <button
-                className="px-3 py-1 bg-yellow-300 text-gray-800 rounded text-sm"
-                onClick={bulkDisable}
-              >
-                Disable
-              </button>
-              <button
-                className="px-3 py-1 bg-red-500 text-white rounded text-sm"
-                onClick={bulkDelete}
-              >
-                delete
-              </button>
-            </div>
+          </div>
+          <div className="flex flex-wrap xl:flex-nowrap items-center gap-2">
+            <button className="px-3 py-1 bg-green-500 text-white rounded text-sm">
+              New
+            </button>
+            <button
+              className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
+              onClick={() => alert("Supplement TRX miner fees (stub)")}
+            >
+              Supplement TRX miner fees
+            </button>
+            <button
+              className="px-3 py-1 bg-sky-600 text-white rounded text-sm"
+              onClick={() => alert("Check balance (stub)")}
+            >
+              Check balance
+            </button>
+            <button className="px-3 py-1 bg-indigo-600 text-white rounded text-sm">
+              One-click USDT aggregation
+            </button>
+            <button
+              className="px-3 py-1 bg-gray-200 text-gray-800 rounded text-sm"
+              onClick={bulkEnable}
+            >
+              Enable
+            </button>
+            <button
+              className="px-3 py-1 bg-yellow-300 text-gray-800 rounded text-sm"
+              onClick={bulkDisable}
+            >
+              Disable
+            </button>
+            <button
+              className="px-3 py-1 bg-red-500 text-white rounded text-sm"
+              onClick={bulkDelete}
+            >
+              delete
+            </button>
           </div>
 
-          <div className="p-4">
+          <div className="my-4">
             <div className="flex items-center gap-2 mb-3">
               <input
                 value={filter}
@@ -231,7 +230,7 @@ export default function CurrencyManagementPage() {
               )}
             </div>
             <div className="overflow-x-auto">
-              <table className="min-w-[1500px] text-sm border-collapse table-auto">
+              <table className="min-w-[1600px] text-sm border-collapse table-auto">
                 <thead>
                   <tr className="text-left ">
                     <th className="p-2 border border-gray-300">

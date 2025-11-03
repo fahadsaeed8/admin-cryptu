@@ -147,9 +147,9 @@ const Page = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen">
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h1 className="text-lg font-semibold mb-4">
+      <div className=" bg-white p-2 md:p-4 min-h-screen">
+        <div className="">
+          <h1 className="md:text-lg font-semibold border-b border-gray-300 mb-4">
             Contract order closing records
           </h1>
 
@@ -158,7 +158,7 @@ const Page = () => {
             <input
               type="text"
               placeholder="Please enter the invite..."
-              className="border px-3 py-2 rounded-md w-full max-w-xs focus:ring focus:ring-blue-300"
+              className="border border-gray-300 px-3 py-2 rounded-md w-full max-w-xs focus:ring focus:ring-blue-300"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -166,7 +166,7 @@ const Page = () => {
 
           {/* Table */}
           <div className="overflow-x-auto  bg-white">
-            <table className="min-w-full text-sm text-gray-700 border-collapse">
+            <table className=" min-w-[1200px] md:min-w-full text-sm text-gray-700 border-collapse">
               <thead className=" text-gray-700 border-b border-gray-300">
                 <tr>
                   {[
@@ -196,7 +196,7 @@ const Page = () => {
                   <tr>
                     <td
                       colSpan={10}
-                      className="text-center py-10 text-gray-500 italic border"
+                      className="text-center py-10 text-gray-500 italic border border-gray-300"
                     >
                       No records found.
                     </td>
@@ -271,7 +271,7 @@ const Page = () => {
 
             {/* Footer */}
             {filtered.length > 0 && (
-              <div className="p-2 text-gray-600 text-sm border-t border-gray-300">
+              <div className="p-2 text-gray-600 text-sm ">
                 {filtered.length} record{filtered.length !== 1 ? "s" : ""}, page
                 1/1
               </div>

@@ -104,38 +104,37 @@ const MiningMachineList: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen">
-        <div className="bg-white shadow-md rounded-lg p-6">
+      <div className=" bg-white p-2 md:p-4">
+        <div className="">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-            <h1 className="text-lg font-semibold text-gray-700 mb-3 md:mb-0">
-              Mining Machine Management &gt;&gt;{" "}
-              <span className="text-blue-600">Mining Machine List</span>
+          <div className="">
+            <h1 className="text-lg font-semibold text-gray-900 border-b border-gray-300 mb-4">
+              Mining Machine List
             </h1>
-
-            {/* Action buttons */}
-            <div className="flex flex-wrap gap-2">
-              <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded text-sm">
-                New
-              </button>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded text-sm">
-                Enable
-              </button>
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-1 rounded text-sm">
-                Disable
-              </button>
-              <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded text-sm">
-                Delete
-              </button>
-            </div>
+          </div>
+          {/* Action buttons */}
+          <div className="flex flex-wrap gap-2 my-4">
+            <button className="bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-1 rounded text-sm">
+              New
+            </button>
+            <button className="bg-blue-500 hover:bg-blue-600 cursor-pointer text-white px-4 py-1 rounded text-sm">
+              Enable
+            </button>
+            <button className="bg-yellow-500 hover:bg-yellow-600 cursor-pointer text-white px-4 py-1 rounded text-sm">
+              Disable
+            </button>
+            <button className="bg-red-500 hover:bg-red-600 cursor-pointer text-white px-4 py-1 rounded text-sm">
+              Delete
+            </button>
           </div>
 
           {/* Table */}
           <div className="overflow-x-auto">
-            <table className="min-w-[1500px] text-sm border-collapse table-auto">
+            <table className="min-w-[1600px] text-sm border-collapse table-auto">
               <thead>
                 <tr className="text-left">
                   {[
+                    " ",
                     "ID",
                     "type",
                     "Purchase type",
@@ -205,8 +204,8 @@ const MiningMachineList: React.FC = () => {
                     <td className="p-2 border border-gray-300">
                       {item.addTime}
                     </td>
-                    <td className="p-3 border border-gray-300 flex justify-center">
-                      <button className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
+                    <td className=" p-4 border border-gray-300 flex justify-center">
+                      <button className="px-2 cursor-pointer py-1 text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
                         edit
                       </button>
                     </td>

@@ -81,23 +81,17 @@ export default function ContractOrdersPage() {
 
   return (
     <DashboardLayout>
-      <div className="">
+      <div className=" min-h-screen bg-white p-2 md:p-4">
         {/* Header */}
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-4 border-b border-gray-300">
           <h1 className="text-lg font-semibold text-gray-800">
             List of contract orders
           </h1>
-          <div className="flex flex-wrap gap-2">
-            <span className="text-red-600 text-sm font-medium">
-              If the user ID is specified profit or loss, it is not affected by
-              single control
-            </span>
-          </div>
         </div>
 
         {/* Search Bar */}
-        <div className="flex flex-wrap gap-2 items-center bg-white shadow p-4 rounded-md mb-6">
-          <select className="border rounded-md px-3 py-2 text-sm">
+        <div className="flex flex-wrap gap-2 items-center mb-6">
+          <select className="border border-gray-300 rounded-md px-3 py-2 text-sm">
             <option>User Account</option>
             <option>Transaction Pair</option>
             <option>Status</option>
@@ -108,11 +102,11 @@ export default function ContractOrdersPage() {
             placeholder="Please enter your query"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 min-w-[200px] border rounded-md px-3 py-2 text-sm"
+            className="flex-1 min-w-[200px] border border-gray-300 rounded-md px-3 py-2 text-sm"
           />
           <button
             onClick={handleReset}
-            className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md text-sm font-medium"
+            className="bg-yellow-400 cursor-pointer hover:bg-yellow-500 text-white px-4 py-2 rounded-md text-sm font-medium"
           >
             Initialization of search
           </button>
@@ -121,30 +115,44 @@ export default function ContractOrdersPage() {
         {/* Table */}
         <div className="overflow-x-auto bg-white">
           <table className="min-w-[1500px] text-sm text-left border-collapse">
-            <thead className=" text-gray-700 border-b">
+            <thead className=" text-gray-700 border-b border-gray-300">
               <tr>
-                <th className="p-2 border text-center">
+                <th className="p-2 border border-gray-300 text-center">
                   <input type="checkbox" className="accent-blue-600" />
                 </th>
-                <th className="p-2 border">ID</th>
-                <th className="p-2 border">Member’s Account</th>
-                <th className="p-2 border">Transaction pair</th>
-                <th className="p-2 border">Direction / Contract Time</th>
-                <th className="p-2 border text-center">Status</th>
-                <th className="p-2 border text-center">Quota of delegation</th>
-                <th className="p-2 border text-center">Building unit price</th>
-                <th className="p-2 border text-center">Closing unit price</th>
-                <th className="p-2 border text-center">Building time</th>
-                <th className="p-2 border text-center">
+                <th className="p-2 border border-gray-300">ID</th>
+                <th className="p-2 border border-gray-300">Member’s Account</th>
+                <th className="p-2 border border-gray-300">Transaction pair</th>
+                <th className="p-2 border border-gray-300">
+                  Direction / Contract Time
+                </th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Status
+                </th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Quota of delegation
+                </th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Building unit price
+                </th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Closing unit price
+                </th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Building time
+                </th>
+                <th className="p-2 border border-gray-300 text-center">
                   Amount of profit or loss
                 </th>
-                <th className="p-2 border text-center">
+                <th className="p-2 border border-gray-300 text-center">
                   After purchase balance
                 </th>
-                <th className="p-2 border text-center">
+                <th className="p-2 border border-gray-300 text-center">
                   Single-control operation
                 </th>
-                <th className="p-2 border text-center">Details</th>
+                <th className="p-2 border border-gray-300 text-center">
+                  Details
+                </th>
               </tr>
             </thead>
 
@@ -153,7 +161,7 @@ export default function ContractOrdersPage() {
                 <tr>
                   <td
                     colSpan={14}
-                    className="text-center py-10 text-gray-500 italic border"
+                    className="text-center py-10 text-gray-500 italic border border-gray-300"
                   >
                     No data yet
                   </td>
@@ -166,13 +174,17 @@ export default function ContractOrdersPage() {
                       index % 2 === 0 ? "bg-gray-100" : "bg-white"
                     } hover:bg-orange-50 transition-colors`}
                   >
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
                       <input type="checkbox" className="accent-blue-600" />
                     </td>
-                    <td className="p-2 border text-center">{order.id}</td>
-                    <td className="p-2 border">{order.account}</td>
-                    <td className="p-2 border">{order.pair}</td>
-                    <td className="p-2 border">
+                    <td className="p-2 border border-gray-300 text-center">
+                      {order.id}
+                    </td>
+                    <td className="p-2 border border-gray-300">
+                      {order.account}
+                    </td>
+                    <td className="p-2 border border-gray-300">{order.pair}</td>
+                    <td className="p-2 border border-gray-300">
                       <span
                         className={`font-medium ${
                           order.direction === "Buy"
@@ -186,7 +198,7 @@ export default function ContractOrdersPage() {
                         {order.contractTime}
                       </div>
                     </td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
                       <span
                         className={`px-2 py-1 rounded text-xs font-medium ${
                           order.status === "Open"
@@ -197,18 +209,20 @@ export default function ContractOrdersPage() {
                         {order.status}
                       </span>
                     </td>
-                    <td className="p-2 border text-center">{order.quota}</td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
+                      {order.quota}
+                    </td>
+                    <td className="p-2 border border-gray-300 text-center">
                       {order.buildPrice}
                     </td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
                       {order.closePrice === 0 ? "-" : order.closePrice}
                     </td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
                       {order.buildTime}
                     </td>
                     <td
-                      className={`p-2 border text-center font-semibold ${
+                      className={`p-2 border border-gray-300 text-center font-semibold ${
                         order.profitLoss >= 0
                           ? "text-green-600"
                           : "text-red-600"
@@ -216,21 +230,21 @@ export default function ContractOrdersPage() {
                     >
                       {order.profitLoss.toFixed(2)}
                     </td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
                       {order.balanceAfter}
                     </td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
                       <button
                         onClick={() => handleDelete(order.id)}
-                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-xs"
+                        className="bg-red-500 cursor-pointer hover:bg-red-600 text-white px-3 py-1 rounded-md text-xs"
                       >
                         Delete
                       </button>
                     </td>
-                    <td className="p-2 border text-center">
+                    <td className="p-2 border border-gray-300 text-center">
                       <button
                         onClick={() => handleDetails(order.id)}
-                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-xs"
+                        className="bg-gray-200 cursor-pointer hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-xs"
                       >
                         View
                       </button>
@@ -242,7 +256,7 @@ export default function ContractOrdersPage() {
           </table>
 
           {/* Footer */}
-          <div className="p-2 text-gray-600 text-sm border-t">
+          <div className="p-2 text-gray-600 text-sm">
             {filteredOrders.length} record
             {filteredOrders.length !== 1 ? "s" : ""}, page 1/1
           </div>

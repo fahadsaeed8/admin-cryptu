@@ -22,13 +22,12 @@ const ExpiredMiningMachines: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen ">
+      <div className=" bg-white p-2 md:p-4">
         <div className="">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-            <h1 className="text-lg font-semibold text-gray-700 mb-3 md:mb-0">
-              Mining Machine Management &gt;&gt;{" "}
-              <span className="text-blue-600">Expired Mining Machines</span>
+          <div className="">
+            <h1 className="text-lg font-semibold text-gray-900 mb-3 border-b border-gray-300">
+              Expired Mining Machines
             </h1>
           </div>
 
@@ -38,6 +37,7 @@ const ExpiredMiningMachines: React.FC = () => {
               <thead>
                 <tr className="text-left">
                   {[
+                    " ",
                     "ID",
                     "Member account",
                     "type",

@@ -20,37 +20,13 @@ const RevenueList: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen">
+      <div className=" bg-white p-2 md:p-4">
         <div>
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-            <h1 className="text-lg font-semibold text-gray-700 mb-3 md:mb-0">
-              Mining Machine Management &gt;&gt;{" "}
-              <span className="text-blue-600">Revenue List</span>
+          <div className="">
+            <h1 className="text-lg font-semibold text-gray-900 mb-4 border-b border-gray-300">
+              Frozen Profit
             </h1>
-
-            {/* Search bar */}
-            <div className="flex items-center border rounded-md px-2 py-1 w-60">
-              <input
-                type="text"
-                placeholder="Enter user account"
-                className="flex-1 outline-none text-sm text-gray-600"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1116.65 16.65z"
-                />
-              </svg>
-            </div>
           </div>
 
           {/* Table */}
@@ -59,6 +35,7 @@ const RevenueList: React.FC = () => {
               <thead>
                 <tr className="text-left">
                   {[
+                    " ",
                     "ID",
                     "Member account",
                     "Frozen amount",

@@ -130,11 +130,13 @@ export default function FinancialDetailsPage() {
 
   return (
     <DashboardLayout>
-      <div className="">
-        <h1 className="text-xl font-semibold mb-4">Financial Details</h1>
+      <div className=" bg-white p-2 md:p-4">
+        <h1 className="text-xl font-semibold mb-4 border-b border-gray-300">
+          Financial Details
+        </h1>
 
         {/* Search Section */}
-        <div className="flex items-center space-x-2 mb-4">
+        <div className="flex flex-wrap lg:flex-nowrap items-center gap-2 mb-4">
           <select className="border border-gray-300 rounded px-3 py-1 focus:ring-2 focus:ring-blue-400 outline-none">
             <option value="username">username</option>
           </select>
@@ -147,7 +149,7 @@ export default function FinancialDetailsPage() {
 
         {/* Table */}
         <div className="overflow-x-auto bg-white">
-          <table className="min-w-full text-sm border-collapse table-auto">
+          <table className=" min-w-[1200px] md:min-w-full text-sm border-collapse table-auto">
             <thead>
               <tr className="text-left">
                 <th className="p-2 border border-gray-300 text-center w-10">

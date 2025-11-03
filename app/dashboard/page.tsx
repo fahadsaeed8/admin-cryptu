@@ -75,7 +75,7 @@ const DashboardPage = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen">
+      <div className="min-h-screen p-2 md:p-0">
         {/* Grid Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {stats.map((item) => (

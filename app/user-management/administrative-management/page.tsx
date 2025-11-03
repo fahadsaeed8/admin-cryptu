@@ -25,41 +25,41 @@ export default function AdminPage() {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-lg font-semibold mb-4">
+      <div className=" min-h-screen bg-white p-2 md:p-4">
+        <h2 className="text-lg font-semibold mb-4 border-b border-gray-300">
           Administrators management
         </h2>
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-2 mb-4">
-          <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">
+          <button className="bg-green-500 cursor-pointer hover:bg-green-600 text-white px-3 py-1 rounded">
             New Additions
           </button>
-          <button className="bg-sky-500 hover:bg-sky-600 text-white px-3 py-1 rounded">
+          <button className="bg-sky-500 cursor-pointer hover:bg-sky-600 text-white px-3 py-1 rounded">
             Enlightenment
           </button>
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">
+          <button className="bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-white px-3 py-1 rounded">
             Banned
           </button>
-          <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+          <button className="bg-red-500 cursor-pointer hover:bg-red-600 text-white px-3 py-1 rounded">
             Deleted
           </button>
 
           {/* Filters */}
-          <div className="ml-auto flex gap-2 items-center">
-            <select className="border rounded px-2 py-1 text-sm">
+          <div className=" flex lg:flex-nowrap flex-wrap gap-2 items-center">
+            <select className="border border-gray-300 rounded px-2 py-1 text-sm">
               <option>All Status</option>
               <option>Normal</option>
               <option>Banned</option>
             </select>
-            <select className="border rounded px-2 py-1 text-sm">
+            <select className="border border-gray-300 rounded px-2 py-1 text-sm">
               <option>Username</option>
               <option>Nickname</option>
             </select>
             <input
               type="text"
               placeholder="Please enter the content"
-              className="border rounded px-2 py-1 text-sm w-48"
+              className="border border-gray-300 rounded px-2 py-1 text-sm w-48"
             />
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function AdminPage() {
                   </td>
 
                   <td className="p-2 border border-gray-300 align-top text-sm">
-                    <button className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-indigo-600">
+                    <button className="px-2 cursor-pointer py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-indigo-600">
                       Edit
                     </button>
                   </td>

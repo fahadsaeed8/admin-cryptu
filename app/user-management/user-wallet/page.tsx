@@ -79,14 +79,16 @@ export default function UserWalletPage() {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-lg font-semibold mb-4">User wallet</h2>
+      <div className=" bg-white p-2 md:p-4 min-h-screen">
+        <h2 className="text-lg font-semibold mb-4 border-b border-gray-300">
+          User wallet
+        </h2>
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-2 mb-4">
           <button
             onClick={() => setShowModal(true)}
-            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+            className="bg-green-500 hover:bg-green-600 cursor-pointer text-white px-3 py-1 rounded"
           >
             New
           </button>
@@ -95,28 +97,28 @@ export default function UserWalletPage() {
             disabled={!selected.length}
             className={`px-3 py-1 rounded text-white ${
               selected.length
-                ? "bg-red-500 hover:bg-red-600"
+                ? "bg-red-500 hover:bg-red-600 cursor-pointer"
                 : "bg-red-300 cursor-not-allowed"
             }`}
           >
             Delete
           </button>
 
-          <div className="ml-auto flex gap-2 items-center">
-            <select className="border rounded px-2 py-1 text-sm">
+          <div className="flex lg:flex-nowrap flex-wrap gap-2 items-center">
+            <select className="border border-gray-300 rounded px-2 py-1 text-sm">
               <option>Currency</option>
               <option>USD</option>
               <option>BTC</option>
               <option>ETH</option>
             </select>
-            <select className="border rounded px-2 py-1 text-sm">
+            <select className="border border-gray-300 rounded px-2 py-1 text-sm">
               <option>username</option>
               <option>wallet name</option>
             </select>
             <input
               type="text"
               placeholder="Please enter your query"
-              className="border rounded px-2 py-1 text-sm w-48"
+              className="border border-gray-300 rounded px-2 py-1 text-sm w-48"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -195,7 +197,7 @@ export default function UserWalletPage() {
                         onClick={() =>
                           alert(`Editing wallet for ${wallet.username}`)
                         }
-                        className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-orange-600"
+                        className="px-2 py-1 text-xs cursor-pointer bg-white border border-gray-300 rounded hover:bg-gray-100 text-orange-600"
                       >
                         Edit
                       </button>
@@ -227,7 +229,7 @@ export default function UserWalletPage() {
                 <input
                   type="text"
                   placeholder="Username"
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
                   value={newWallet.username}
                   onChange={(e) =>
                     setNewWallet({ ...newWallet, username: e.target.value })
@@ -236,7 +238,7 @@ export default function UserWalletPage() {
                 <input
                   type="text"
                   placeholder="Currency"
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
                   value={newWallet.currency}
                   onChange={(e) =>
                     setNewWallet({ ...newWallet, currency: e.target.value })
@@ -245,7 +247,7 @@ export default function UserWalletPage() {
                 <input
                   type="text"
                   placeholder="Wallet Name"
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
                   value={newWallet.walletName}
                   onChange={(e) =>
                     setNewWallet({ ...newWallet, walletName: e.target.value })
@@ -254,7 +256,7 @@ export default function UserWalletPage() {
                 <input
                   type="text"
                   placeholder="Wallet Address"
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
                   value={newWallet.walletAddress}
                   onChange={(e) =>
                     setNewWallet({
@@ -269,13 +271,13 @@ export default function UserWalletPage() {
               <div className="flex justify-end gap-3 mt-5">
                 <button
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded"
+                  className="px-4 py-2 bg-gray-300 cursor-pointer hover:bg-gray-400 rounded"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddWallet}
-                  className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded"
+                  className="px-4 py-2 cursor-pointer bg-green-500 hover:bg-green-600 text-white rounded"
                 >
                   Add
                 </button>

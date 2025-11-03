@@ -45,16 +45,16 @@ export default function NotificationsPage() {
 
   return (
     <DashboardLayout>
-      <div className="">
-        <h1 className="text-xl font-semibold mb-4">
+      <div className=" min-h-screen bg-white p-2 md:p-4">
+        <h1 className="text-xl font-semibold mb-4 border-b border-gray-300">
           Send notification records
         </h1>
 
         {/* Search + Delete */}
-        <div className="flex items-center mb-4 space-x-2">
+        <div className="flex flex-wrap xl:flex-nowrap items-center mb-4 gap-2">
           <button
             onClick={handleDelete}
-            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
+            className="bg-red-500 cursor-pointer text-white px-4 py-1 rounded hover:bg-red-600 transition"
           >
             Delete
           </button>
@@ -63,25 +63,35 @@ export default function NotificationsPage() {
             placeholder="Please enter your query"
             className="border border-gray-300 rounded px-3 py-1 w-64 focus:ring-2 focus:ring-blue-400 outline-none"
           />
-          <button className="ml-auto bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-500 transition">
+          <button className="cursor-pointer bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-500 transition">
             Initial search
           </button>
         </div>
 
         {/* Table */}
         <div className="overflow-x-auto bg-white">
-          <table className="min-w-full text-sm text-left border-collapse">
+          <table className=" min-w-[1200px] md:min-w-full text-sm text-left border-collapse">
             <thead className=" text-gray-800">
               <tr>
-                <th className="px-3 py-2 border text-center">
+                <th className="px-3 py-2 border border-gray-300 text-center">
                   <input type="checkbox" />
                 </th>
-                <th className="px-3 py-2 border text-center">ID</th>
-                <th className="px-3 py-2 border">Member account</th>
-                <th className="px-3 py-2 border">Notification Title</th>
-                <th className="px-3 py-2 border">Notification Content</th>
-                <th className="px-3 py-2 border">Sending Time</th>
-                <th className="px-3 py-2 border">State</th>
+                <th className="px-3 py-2 border border-gray-300 text-center">
+                  ID
+                </th>
+                <th className="px-3 py-2 border border-gray-300">
+                  Member account
+                </th>
+                <th className="px-3 py-2 border border-gray-300">
+                  Notification Title
+                </th>
+                <th className="px-3 py-2 border border-gray-300">
+                  Notification Content
+                </th>
+                <th className="px-3 py-2 border border-gray-300">
+                  Sending Time
+                </th>
+                <th className="px-3 py-2 border border-gray-300">State</th>
               </tr>
             </thead>
 
@@ -94,16 +104,26 @@ export default function NotificationsPage() {
                       index % 2 === 0 ? "bg-gray-100" : " bg-white"
                     } hover:bg-orange-100 transition-colors`}
                   >
-                    <td className="px-3 py-2 border text-center">
+                    <td className="px-3 py-2 border border-gray-300 text-center">
                       <input type="checkbox" value={n.id} />
                     </td>
-                    <td className="px-3 py-2 border text-center">{n.id}</td>
-                    <td className="px-3 py-2 border">{n.memberAccount}</td>
-                    <td className="px-3 py-2 border">{n.title}</td>
-                    <td className="px-3 py-2 border">{n.content}</td>
-                    <td className="px-3 py-2 border">{n.sendingTime}</td>
+                    <td className="px-3 py-2 border border-gray-300 text-center">
+                      {n.id}
+                    </td>
+                    <td className="px-3 py-2 border border-gray-300">
+                      {n.memberAccount}
+                    </td>
+                    <td className="px-3 py-2 border border-gray-300">
+                      {n.title}
+                    </td>
+                    <td className="px-3 py-2 border border-gray-300">
+                      {n.content}
+                    </td>
+                    <td className="px-3 py-2 border border-gray-300">
+                      {n.sendingTime}
+                    </td>
                     <td
-                      className={`px-3 py-2 border font-semibold text-center ${
+                      className={`px-3 py-2 border border-gray-300 font-semibold text-center ${
                         n.state === "Unread" ? "text-red-500" : "text-green-600"
                       }`}
                     >
@@ -115,7 +135,7 @@ export default function NotificationsPage() {
                 <tr>
                   <td
                     colSpan={7}
-                    className="text-center text-gray-400 py-8 border bg-gray-50"
+                    className="text-center text-gray-400 py-8 border border-gray-300 bg-gray-50"
                   >
                     No notifications found.
                   </td>

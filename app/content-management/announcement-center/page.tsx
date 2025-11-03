@@ -21,25 +21,25 @@ const AnnouncementCenter: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen">
+      <div className=" bg-white p-2 md:p-4 min-h-screen">
         {/* Page Header */}
-        <h1 className="text-lg font-semibold text-gray-700 mb-4">
+        <h1 className="text-lg font-semibold text-gray-900 mb-4 border-b border-gray-300">
           Announcement Center
         </h1>
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-2 mb-4">
-          <button className="bg-green-500 text-white px-4 py-1.5 rounded hover:bg-green-600 text-sm">
+          <button className="bg-green-500 cursor-pointer text-white px-4 py-1.5 rounded hover:bg-green-600 text-sm">
             New
           </button>
-          <button className="bg-red-500 text-white px-4 py-1.5 rounded hover:bg-red-600 text-sm">
+          <button className="bg-red-500 cursor-pointer text-white px-4 py-1.5 rounded hover:bg-red-600 text-sm">
             Delete
           </button>
         </div>
 
         {/* Table Container */}
         <div className="overflow-x-auto bg-white">
-          <table className="min-w-full text-sm border-collapse table-auto">
+          <table className=" min-w-[1200px] md:min-w-full text-sm border-collapse table-auto">
             <thead>
               <tr className=" text-left">
                 <th className="p-2 border border-gray-300 w-10">
@@ -92,10 +92,10 @@ const AnnouncementCenter: React.FC = () => {
                       </span>
                     </td>
                     <td className="p-2 border border-gray-300 flex gap-2">
-                      <button className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
+                      <button className="px-2 py-1 cursor-pointer text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
                         Edit
                       </button>
-                      <button className="px-2 py-1 text-xs bg-red-50 border border-gray-300 text-red-600 rounded hover:bg-red-100 transition">
+                      <button className="px-2 py-1 cursor-pointer text-xs bg-red-50 border border-gray-300 text-red-600 rounded hover:bg-red-100 transition">
                         Delete
                       </button>
                     </td>

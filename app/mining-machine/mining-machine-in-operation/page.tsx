@@ -82,25 +82,30 @@ const MiningMachineTable: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen">
+      <div className=" bg-white p-2 md:p-4">
         <div className="">
           {/* Header */}
+          <div className="">
+            <h1 className="text-lg font-semibold text-gray-900 border-b border-gray-300 mb-4">
+              Mining Machine in Operation
+            </h1>
+          </div>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
             {/* Buttons */}
             <div className="flex flex-wrap gap-2">
-              <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">
+              <button className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">
                 Startup benefits
               </button>
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">
+              <button className="bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">
                 Prohibited from profiting
               </button>
-              <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">
+              <button className="bg-red-500 cursor-pointer hover:bg-red-600 text-white px-3 py-1 rounded text-sm">
                 Deleting mining machines
               </button>
               <input
                 type="text"
                 placeholder="Enter user account"
-                className="border px-3 py-1 rounded text-sm focus:ring-2 focus:ring-blue-400"
+                className="border border-gray-300 px-3 py-1 rounded text-sm focus:ring-2 focus:ring-blue-400"
               />
             </div>
           </div>

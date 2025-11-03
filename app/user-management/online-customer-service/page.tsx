@@ -15,11 +15,13 @@ export default function CustomerServicePage() {
 
   return (
     <DashboardLayout>
-      <div className="">
-        <h1 className="text-xl font-semibold mb-4">Online customer service</h1>
+      <div className=" bg-white p-2 md:p-4 min-h-screen">
+        <h1 className="text-xl font-semibold mb-4 border-b border-gray-300">
+          Online customer service
+        </h1>
 
         <div className="overflow-x-auto w-full bg-white">
-          <table className="min-w-full text-sm border-collapse table-auto">
+          <table className=" min-w-[800px] md:min-w-full text-sm border-collapse table-auto">
             <thead>
               <tr className="text-left">
                 <th className="p-2 border border-gray-300 w-10 text-center">
@@ -59,7 +61,7 @@ export default function CustomerServicePage() {
                     {r.unansweredRecords}
                   </td>
                   <td className="p-2 border border-gray-300 text-center">
-                    <button className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
+                    <button className="px-2 cursor-pointer py-1 text-xs bg-white border border-gray-300 rounded hover:bg-orange-100 transition">
                       check the details
                     </button>
                   </td>

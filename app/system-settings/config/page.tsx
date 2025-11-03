@@ -113,18 +113,13 @@ export default function Page() {
 
   return (
     <DashboardLayout>
-      <main className="min-h-screen">
+      <main className="bg-white p-2 md:p-4">
         <div className="max-w-6xl mx-auto bg-white overflow-hidden">
-          <div className="px-6 py-6 border-b border-gray-300">
-            <h1 className="text-2xl font-semibold">
-              System Parameter Settings
-            </h1>
-            <p className="text-sm text-gray-500 mt-1">
-              Update system-level parameters used across the platform.
-            </p>
+          <div className="border-b border-gray-300">
+            <h1 className="text-2xl font-semibold">System Configuration</h1>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 space-y-4">
+          <form onSubmit={handleSubmit} className="py-6 space-y-4">
             {(
               [
                 { key: "verificationEmail", label: "Verification Email:" },

@@ -38,8 +38,10 @@ const AgentManagement: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="">
-        <h1 className="text-xl font-semibold mb-4">Agent Management</h1>
+      <div className=" min-h-screen bg-white p-2 md:p-4">
+        <h1 className="text-xl font-semibold mb-4 border-b border-gray-300">
+          Agent Management
+        </h1>
 
         <div className="overflow-x-auto bg-white">
           <table className="min-w-[1400px] text-sm border-collapse table-auto">
@@ -112,7 +114,7 @@ const AgentManagement: React.FC = () => {
                   <td className="p-2 border border-gray-300 align-top text-sm">
                     <button
                       onClick={() => cancelAgent(agent.id)}
-                      className="px-2 py-1 text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-red-600"
+                      className="px-2 py-1 cursor-pointer text-xs bg-white border border-gray-300 rounded hover:bg-gray-100 text-red-600"
                     >
                       Cancel the agent
                     </button>
