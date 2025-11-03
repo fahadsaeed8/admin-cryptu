@@ -129,7 +129,6 @@ export default function DashboardLayout({
         {/* Logo */}
         <div className="py-2 font-bold text-xl flex items-center justify-center gap-2 border-b border-gray-700">
           <img src="/alogn.png" className="w-7" alt="Logo" />
-          <span className="hidden sm:inline">Admin Panel</span>
         </div>
 
         {/* Accordion Header */}
